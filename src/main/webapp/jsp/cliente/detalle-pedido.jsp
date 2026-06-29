@@ -99,7 +99,7 @@
 <main>
     <% if (esNuevo) { %>
     <div class="alerta-exito">
-        ✅ <strong>¡Pedido enviado!</strong> Lo revisaremos pronto y te confirmaremos el precio.
+        <img src="${pageContext.request.contextPath}/img/Icon/listo.png" class="alerta-icon" alt="Enviado"><strong>¡Pedido enviado!</strong> Lo revisaremos pronto y te confirmaremos el precio.
     </div>
     <% } %>
 

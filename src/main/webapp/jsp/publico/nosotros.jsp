@@ -7,88 +7,132 @@
     <title>Sobre Nosotros — La Casa de Mandi</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
     <style>
-        .hero-nosotros {
+        /* ── Hero ── */
+        .nosotros-hero {
             text-align: center;
-            padding: 80px 64px 48px;
+            padding: 80px 64px 24px;
         }
-        .hero-nosotros h1 {
+        .nosotros-hero h1 {
             font-family: var(--titulo);
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin: 12px 0 24px;
         }
-        .hero-nosotros p {
+        .nosotros-hero .divisor {
+            width: 48px;
+            height: 2px;
+            background: var(--primario);
+            margin: 0 auto 28px;
+        }
+        .nosotros-hero p {
             color: var(--texto-suave);
-            max-width: 600px;
+            max-width: 580px;
             margin: 0 auto;
-            font-size: 17px;
+            font-size: 16px;
             line-height: 28px;
         }
-        .historia {
+
+        /* ── Equipo ── */
+        .equipo {
+            padding: 72px 64px;
+            text-align: center;
+        }
+        .equipo h2 {
+            font-family: var(--titulo);
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .equipo__sub {
+            color: var(--texto-suave);
+            margin-bottom: 48px;
+            font-size: 15px;
+        }
+        .equipo-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-            padding: 64px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
         }
-        .historia__img {
+        .miembro {
+            text-align: center;
+        }
+        .miembro__foto {
             width: 100%;
-            aspect-ratio: 4/3;
-            background: var(--fondo-alt);
-            border-radius: 20px;
+            aspect-ratio: 3/4;
+            border-radius: 12px;
             overflow: hidden;
+            background: var(--fondo-alt);
+            margin-bottom: 16px;
         }
-        .historia__img img {
+        .miembro__foto img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
+            display: block;
         }
-        .historia__texto h2 {
-            font-family: var(--titulo);
-            font-size: 32px;
+        .miembro__carrera {
+            font-size: 10px;
             font-weight: 700;
-            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primario);
+            margin-bottom: 6px;
         }
-        .historia__texto p {
+        .miembro__nombre {
+            font-family: var(--titulo);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .miembro__cedula {
+            font-size: 12px;
             color: var(--texto-suave);
-            line-height: 28px;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
-        .valores {
-            padding: 64px;
+        .miembro__desc {
+            font-size: 13px;
+            color: var(--texto-suave);
+            line-height: 20px;
+        }
+
+        /* ── CTA ── */
+        .cta-nosotros {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 56px 64px;
             background: var(--fondo-alt);
-            text-align: center;
         }
-        .valores h2 {
+        .cta-nosotros__texto h2 {
             font-family: var(--titulo);
             font-size: 32px;
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 8px;
         }
-        .valores-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-        .valor {
-            padding: 32px;
-            background: #fff;
-            border: 1px solid var(--borde);
-            border-radius: 16px;
-        }
-        .valor__icono {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-        .valor h3 {
-            font-family: var(--titulo);
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-        .valor p {
-            font-size: 14px;
+        .cta-nosotros__texto p {
             color: var(--texto-suave);
-            line-height: 22px;
+            font-size: 15px;
+        }
+        .cta-nosotros__botones {
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .btn-outline {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid var(--primario);
+            color: var(--primario);
+            font-family: var(--cuerpo);
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+        .btn-outline:hover {
+            background: var(--primario);
+            color: #fff;
         }
     </style>
 </head>
@@ -99,43 +143,76 @@
 
 <main>
 
-    <section class="hero-nosotros">
+    <%-- ── HERO ── --%>
+    <section class="nosotros-hero">
         <span class="etiqueta">Nuestra Historia</span>
-        <h1>La Casa de Mandi</h1>
-        <p>Llevando el sabor de lo casero a tu mesa con ingredientes 100% naturales y recetas tradicionales transmitidas de generacion en generacion.</p>
+        <h1>Tradición y Pasión en Cada Bocado</h1>
+        <div class="divisor"></div>
+        <p>Nacimos del deseo de compartir el calor de un hogar panameño a través de la repostería artesanal. En La Casa de Mandi, cada ingrediente es seleccionado con rigor técnico y amor casero, fusionando la precisión de la ingeniería con la dulzura de la tradición.</p>
     </section>
 
-    <section class="historia">
-        <div class="historia__img">
-            <div style="width:100%;height:100%;background:var(--fondo-alt);"></div>
-        </div>
-        <div class="historia__texto">
-            <h2>Origen Familiar</h2>
-            <p>La Casa de Mandi nacio con la idea de compartir el sabor de la reposteria casera que se cocina con amor. Cada receta es un legado familiar que hemos perfeccionado con los anos.</p>
-            <p>Utilizamos unicamente ingredientes frescos y naturales, sin conservantes artificiales, para que cada bocado sea una experiencia autentica y memorable.</p>
-            <p>Desde hace mas de una decada, nos especializamos en crear momentos dulces para celebraciones, familias y amigos en Panama y sus alrededores.</p>
+    <%-- ── EQUIPO ── --%>
+    <section class="equipo">
+        <h2>Nuestro Equipo</h2>
+        <p class="equipo__sub">El talento detrás de la innovación y el sabor.</p>
+
+        <div class="equipo-grid">
+
+            <div class="miembro">
+                <div class="miembro__foto">
+                    <img src="${pageContext.request.contextPath}/img/MarianBarba.jpeg"
+                         alt="Marian Barba" onerror="this.style.display='none'">
+                </div>
+                <p class="miembro__carrera">Lic. Ingeniería de Software</p>
+                <h3 class="miembro__nombre">Marian Barba</h3>
+                <p class="miembro__cedula">8-1012-213</p>
+                <p class="miembro__desc">Líder de desarrollo y arquitectura de soluciones, enfocada en la optimización de procesos digitales para la gestión de pedidos artesanales.</p>
+            </div>
+
+            <div class="miembro">
+                <div class="miembro__foto">
+                    <img src="${pageContext.request.contextPath}/img/GabrielaFuentes.jpeg"
+                         alt="Gabriela Fuentes" onerror="this.style.display='none'">
+                </div>
+                <p class="miembro__carrera">Lic. Ingeniería de Software</p>
+                <h3 class="miembro__nombre">Gabriela Fuentes</h3>
+                <p class="miembro__cedula">8-1042-245</p>
+                <p class="miembro__desc">Especialista en experiencia de usuario y diseño de interfaces intuitivas que conectan la calidez de lo casero con la facilidad de lo digital.</p>
+            </div>
+
+            <div class="miembro">
+                <div class="miembro__foto">
+                    <img src="${pageContext.request.contextPath}/img/LauraOrellana.jpeg"
+                         alt="Laura Orellana" onerror="this.style.display='none'">
+                </div>
+                <p class="miembro__carrera">Lic. Ingeniería de Software</p>
+                <h3 class="miembro__nombre">Laura Orellana</h3>
+                <p class="miembro__cedula">E-8-221893</p>
+                <p class="miembro__desc">Encargada de la lógica de negocio y escalabilidad del sistema, garantizando que cada transacción sea tan fluida como nuestra crema pastelera.</p>
+            </div>
+
+            <div class="miembro">
+                <div class="miembro__foto">
+                    <img src="${pageContext.request.contextPath}/img/EvelinPineda.jpeg"
+                         alt="Evelin Pineda" onerror="this.style.display='none'">
+                </div>
+                <p class="miembro__carrera">Lic. Ingeniería de Software</p>
+                <h3 class="miembro__nombre">Evelin Pineda</h3>
+                <p class="miembro__cedula">8-1031-1126</p>
+                <p class="miembro__desc">Responsable de control de calidad y pruebas integrales, asegurando la robustez tecnológica de nuestra plataforma de ventas.</p>
+            </div>
+
         </div>
     </section>
 
-    <section class="valores">
-        <span class="etiqueta">Lo que nos define</span>
-        <h2>Nuestros Valores</h2>
-        <div class="valores-grid">
-            <div class="valor">
-                <div class="valor__icono">🌿</div>
-                <h3>Ingredientes Naturales</h3>
-                <p>Solo utilizamos ingredientes frescos y 100% naturales. Sin conservantes ni colorantes artificiales en ninguna de nuestras recetas.</p>
-            </div>
-            <div class="valor">
-                <div class="valor__icono">❤️</div>
-                <h3>Hecho con Amor</h3>
-                <p>Cada pieza es elaborada con dedicacion y carino. No son solo postres, son momentos de felicidad que compartimos contigo.</p>
-            </div>
-            <div class="valor">
-                <div class="valor__icono">📍</div>
-                <h3>Origen Panameno</h3>
-                <p>Orgullosamente panamenos. Apoyamos a productores locales y traemos los sabores tropicales del pais a cada creacion.</p>
-            </div>
+    <%-- ── CTA FINAL ── --%>
+    <section class="cta-nosotros">
+        <div class="cta-nosotros__texto">
+            <h2>¿Listo para probar la tradición?</h2>
+            <p>Descubre nuestra selección de dulces caseros hoy mismo.</p>
+        </div>
+        <div class="cta-nosotros__botones">
+            <a href="${pageContext.request.contextPath}/jsp/publico/catalogo.jsp" class="btn btn-primario">Ver Catálogo</a>
         </div>
     </section>
 

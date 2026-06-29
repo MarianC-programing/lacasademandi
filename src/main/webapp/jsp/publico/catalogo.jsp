@@ -53,8 +53,8 @@
     </div>
 
     <div class="tabs">
-        <button class="tab activo" onclick="mostrar('dulces', this)">🎂 Dulces</button>
-        <button class="tab"        onclick="mostrar('postres', this)">🍮 Postres</button>
+        <button class="tab activo" onclick="mostrar('dulces', this)"> Dulces</button>
+        <button class="tab"        onclick="mostrar('postres', this)"> Postres</button>
     </div>
 
     <%-- ====== SECCIÓN DULCES ====== --%>

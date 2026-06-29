@@ -26,7 +26,7 @@
                 // Conectar a la BD
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/la_casa_de_mandi?useSSL=false&serverTimezone=America/Panama",
+                    "jdbc:mysql://127.0.0.1:3306/la_casa_de_mandi?useSSL=false&serverTimezone=America/Panama",
                     "root", ""
                 );
 

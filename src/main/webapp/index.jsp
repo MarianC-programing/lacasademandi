@@ -162,8 +162,7 @@
             </div>
         </div>
         <div class="hero__img">
-            <!-- Agregar imagen principal cuando esté disponible -->
-            <div style="width:100%;height:100%;background:var(--fondo-alt);"></div>
+            <img src="${pageContext.request.contextPath}/img/HeroIndex.png" alt="Pasteles artesanales de La Casa de Mandi" onerror="this.style.display='none'">
         </div>
     </section>
 

@@ -109,7 +109,7 @@
                 <div class="campo">
                     <label for="password">Contraseña</label>
                     <input type="password" id="password" name="password"
-                           placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password">
+                           placeholder="Mínimo 6 caracteres" required pattern=".{6,}" title="Mínimo 6 caracteres" autocomplete="new-password">
                 </div>
                 <div class="campo">
                     <label for="password2">Confirmar contraseña</label>

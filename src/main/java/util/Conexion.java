@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public class Conexion {
 
-    private static final String URL    = "jdbc:mysql://localhost:3306/la_casa_de_mandi"
+    private static final String URL    = "jdbc:mysql://127.0.0.1:3306/la_casa_de_mandi"
                                        + "?useSSL=false&serverTimezone=America/Panama&useUnicode=true&characterEncoding=UTF-8";
     private static final String USUARIO = "root";
     private static final String CLAVE   = "";   // Cambiar en producción

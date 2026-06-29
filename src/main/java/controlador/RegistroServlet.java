@@ -4,10 +4,10 @@ import dao.ClienteDAO;
 import modelo.Cliente;
 import org.mindrot.jbcrypt.BCrypt;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,6 +17,7 @@ import java.sql.SQLException;
  * GET  /registro  — Muestra el formulario.
  */
 public class RegistroServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

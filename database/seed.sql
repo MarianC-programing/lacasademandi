@@ -102,11 +102,11 @@ INSERT INTO Producto_Variante (id_producto, tamano, precio_base, disponible) VAL
 -- ============================================================
 
 INSERT INTO Cliente (nombre, telefono, whatsapp, correo, password) VALUES
-  ('Ana Pérez',        '6000-0001', '6000-0001', 'ana.perez@gmail.com',      '$2y$10$trIeLS/0v2wkrxKI7t2ZvuOYC/HH2.s.Osa74zutxsMBLx4qjhYZq'),
-  ('Carlos Gómez',     '6000-0002', '6000-0002', 'carlos.gomez@gmail.com',   '$2y$10$c0bfz8mzqfDfJRP9gfuPzenEgk1/EdxI.GNrkwnOFuBjG/FRKTCey'),
-  ('María Rodríguez',  '6000-0003', '6000-0003', 'maria.rodriguez@gmail.com','$2y$10$v.IayMeFpQMoNJIO3oizVOYivKBQ7DYe6hPYgZ8ivvjWwCMp.QzXW'),
-  ('Luis Fernández',   '6000-0004', '6000-0004', 'luis.fernandez@gmail.com', '$2y$10$PLQiFcJPIwO90shMKATJFONBXPdwXLKVMOFX6LYD9UFq/BkLwgxNy'),
-  ('Daniela Castillo', '6000-0005', '6000-0005', 'daniela.castillo@gmail.com','$2y$10$Ib8.OogsZ/pmdKEpAC/5O.OUYDUvJn2SMjhBC5EdanxwgEwQzSvl6');
+  ('Ana Pérez',        '6000-0001', '6000-0001', 'ana.perez@gmail.com',       '$2a$10$xyi0lYZjiyGUm/d6c.mwvuUlsFXSZg7mDLBWs63ocTtEue6s.nm8K'),
+  ('Carlos Gómez',     '6000-0002', '6000-0002', 'carlos.gomez@gmail.com',    '$2a$10$xyi0lYZjiyGUm/d6c.mwvuUlsFXSZg7mDLBWs63ocTtEue6s.nm8K'),
+  ('María Rodríguez',  '6000-0003', '6000-0003', 'maria.rodriguez@gmail.com', '$2a$10$xyi0lYZjiyGUm/d6c.mwvuUlsFXSZg7mDLBWs63ocTtEue6s.nm8K'),
+  ('Luis Fernández',   '6000-0004', '6000-0004', 'luis.fernandez@gmail.com',  '$2a$10$xyi0lYZjiyGUm/d6c.mwvuUlsFXSZg7mDLBWs63ocTtEue6s.nm8K'),
+  ('Daniela Castillo', '6000-0005', '6000-0005', 'daniela.castillo@gmail.com','$2a$10$xyi0lYZjiyGUm/d6c.mwvuUlsFXSZg7mDLBWs63ocTtEue6s.nm8K');
 
 -- ============================================================
 -- 5. SEED — Capacidad de entrega (próximos días con cupos)

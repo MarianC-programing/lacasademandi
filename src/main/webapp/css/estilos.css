@@ -41,7 +41,42 @@ a:hover {
 
 img {
     display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.icon-inline {
+    display: inline-block;
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.sidebar__nav a img.icon-inline,
+.resumen-label img.icon-inline,
+.stat-card__label img.icon-inline,
+.gestionar-link img.icon-inline {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+.alerta-icon {
+    display: inline-block;
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.avatar img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Header */
@@ -59,11 +94,24 @@ img {
 }
 
 .header__logo {
+    display: flex;
+    align-items: center;
     font-family: var(--titulo);
     font-style: italic;
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--primario);
+}
+
+.header__logo:hover {
+    text-decoration: none;
+}
+
+.header__logo img {
+    display: block;
+    max-height: 70px;
+    width: auto;
+    max-width: 55px;
 }
 
 .header__nav {

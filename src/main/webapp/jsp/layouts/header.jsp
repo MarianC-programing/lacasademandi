@@ -9,18 +9,18 @@
         ? (String) session.getAttribute("nombre") : "";
 %>
 <header class="header">
-    <a href="${pageContext.request.contextPath}/index.jsp" class="header__logo">La Casa de Mandi</a>
+    <a href="${pageContext.request.contextPath}/index.jsp" class="header__logo" aria-label="La Casa de Mandi">
+        <img src="${pageContext.request.contextPath}/img/Logo.png" alt="Logo de La Casa de Mandi">
+    </a>
 
     <nav>
         <ul class="header__nav">
             <li><a href="${pageContext.request.contextPath}/index.jsp"
                    class="<%= "inicio".equals(paginaActiva)   ? "activo" : "" %>">Inicio</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/publico/catalogo.jsp"
-                   class="<%= "catalogo".equals(paginaActiva) ? "activo" : "" %>">Catálogo</a></li>
+                   class="<%= "catalogo".equals(paginaActiva) ? "activo" : "" %>">Catalogo</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/publico/nosotros.jsp"
                    class="<%= "nosotros".equals(paginaActiva) ? "activo" : "" %>">Sobre Nosotros</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/publico/contacto.jsp"
-                   class="<%= "contacto".equals(paginaActiva) ? "activo" : "" %>">Contacto</a></li>
         </ul>
     </nav>
 
@@ -34,7 +34,7 @@
             <a href="${pageContext.request.contextPath}/jsp/admin/dashboard.jsp" class="btn btn-primario">Panel</a>
             <a href="${pageContext.request.contextPath}/logout" style="font-size:13px; color:var(--texto-suave);">Salir</a>
         <% } else { %>
-            <a href="${pageContext.request.contextPath}/login.jsp" class="btn btn-outline">Iniciar sesión</a>
+            <a href="${pageContext.request.contextPath}/login.jsp" class="btn btn-outline">Iniciar sesion</a>
             <a href="${pageContext.request.contextPath}/registro" class="btn btn-primario">Crear cuenta</a>
         <% } %>
     </div>

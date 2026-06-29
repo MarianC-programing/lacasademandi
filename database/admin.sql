@@ -9,11 +9,10 @@ USE la_casa_de_mandi;
 INSERT INTO Administrador (nombre, correo, password) VALUES (
     'Mandi',
     'mandi.admin@gmail.com',
-    '$2y$10$x1ZpChL9bk/O.8VcQpPMhuNnRw0k.WPn5kCf/29/GA46QWX9ben4q'
+    '$2a$10$6QaiAtB7ihuZgG.bRLPQQe/Tr2MDRe1ZD0MLztBVZq6rRCyqDsxnW'
 );
 
--- Hash generado con password_hash('MandiWorld', PASSWORD_BCRYPT) — verificado
--- Para validar en Java usar BCrypt.checkpw(passwordIngresada, hashGuardado) con jBCrypt
+-- Hash generado con jBCrypt (Java) para password 'MandiWorld'
 
 -- Verificar inserción:
 -- SELECT id_admin, nombre, correo FROM Administrador;

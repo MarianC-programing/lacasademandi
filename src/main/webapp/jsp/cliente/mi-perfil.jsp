@@ -68,7 +68,7 @@
             <h2>Información personal</h2>
 
             <% if ("1".equals(request.getParameter("ok"))) { %>
-                <div class="alerta-exito">✅ Tus datos se guardaron correctamente.</div>
+                <div class="alerta-exito"><img src="${pageContext.request.contextPath}/img/Icon/listo.png" class="alerta-icon" alt="Éxito">Tus datos se guardaron correctamente.</div>
             <% } %>
 
             <% if (request.getAttribute("error") != null) { %>
