@@ -1,4 +1,2 @@
-<%
-    // Redirect al dashboard del admin
-    response.sendRedirect(request.getContextPath() + "/jsp/admin/dashboard.jsp");
-%>
+<%-- Redirige al dashboard real --%>
+<% response.sendRedirect(request.getContextPath() + "/jsp/admin/dashboard.jsp"); %>
