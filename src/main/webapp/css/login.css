@@ -1,0 +1,253 @@
+/* ============================================
+   La Casa de Mandi — Login Styles
+   Minimalista, sin imágenes, colores pastel
+   ============================================ */
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables CSS */
+:root {
+    --color-rosa-principal: #f3e5e0;
+    --color-rosa-suave: #f8f0ed;
+    --color-dulce: #e8c8c0;
+    --color-dulce-oscuro: #c9a89e;
+    --color-texto-principal: #3d2b24;
+    --color-texto-suave: #7a655e;
+    --color-blanco: #ffffff;
+    --color-error: #d8786c;
+    --sombra-suave: 0 4px 20px rgba(61, 43, 36, 0.08);
+    --sombra-elevada: 0 8px 32px rgba(61, 43, 36, 0.12);
+    --radio-borde: 12px;
+    --transicion: all 0.3s ease;
+}
+
+/* Body centrado */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-rosa-suave);
+    color: var(--color-texto-principal);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ============================================
+   Contenedor Principal
+   ============================================ */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* ============================================
+   Tarjeta de Login
+   ============================================ */
+.login-card {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-elevada);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ornamento decorativo superior */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--color-dulce-oscuro);
+}
+
+/* ============================================
+   Encabezado
+   ============================================ */
+.login-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.login-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.login-header .tagline {
+    font-size: 14px;
+    color: var(--color-texto-suave);
+    font-weight: 400;
+}
+
+/* ============================================
+   Formulario
+   ============================================ */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Grupo de campo */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-texto-principal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    padding: 14px 16px;
+    border: 2px solid var(--color-rosa-principal);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--color-texto-principal);
+    background-color: var(--color-blanco);
+    transition: var(--transicion);
+    outline: none;
+}
+
+.form-group input::placeholder {
+    color: #b8a8a2;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: var(--color-dulce-oscuro);
+    box-shadow: 0 0 0 3px rgba(201, 168, 158, 0.15);
+}
+
+/* ============================================
+   Indicador de tipo de login
+   ============================================ */
+.login-type-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background-color: var(--color-rosa-suave);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--color-texto-suave);
+    border: 1px solid var(--color-rosa-principal);
+}
+
+.login-type-indicator .icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-dulce);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--color-blanco);
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   Botón de envío
+   ============================================ */
+.btn-submit {
+    padding: 14px 24px;
+    background-color: var(--color-dulce-oscuro);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion);
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-submit:hover {
+    background-color: #b8968a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(201, 168, 158, 0.35);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   Pie de tarjeta
+   ============================================ */
+.login-footer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-rosa-principal);
+    text-align: center;
+}
+
+.login-footer p {
+    font-size: 14px;
+    color: var(--color-texto-suave);
+    margin-bottom: 4px;
+}
+
+.login-footer a {
+    color: var(--color-dulce-oscuro);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transicion);
+}
+
+.login-footer a:hover {
+    color: var(--color-texto-principal);
+    text-decoration: underline;
+}
+
+/* ============================================
+   Utilitarios
+   ============================================ */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 32px 24px;
+    }
+
+    .login-header h1 {
+        font-size: 24px;
+    }
+}

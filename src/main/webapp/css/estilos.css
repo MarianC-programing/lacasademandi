@@ -1,0 +1,265 @@
+/* Proyecto LA CASA DE MANDI - Estilos base
+   Fuentes: Playfair Display (titulos) + Manrope (texto)
+   Colores: terracota #a23c3e, crema #fcf9f8 */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Manrope:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primario:     #a23c3e;
+    --primario-dark:#7a1e20;
+    --fondo:        #fcf9f8;
+    --fondo-alt:    #f6f3f2;
+    --borde:        #e0d8d5;
+    --texto:        #1c1b1b;
+    --texto-suave:  #5a5450;
+    --titulo:       'Playfair Display', Georgia, serif;
+    --cuerpo:       'Manrope', system-ui, sans-serif;
+}
+
+body {
+    font-family: var(--cuerpo);
+    background-color: var(--fondo);
+    color: var(--texto);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primario);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+/* Header */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 64px;
+    height: 64px;
+    background: rgba(252,249,248,0.95);
+    border-bottom: 1px solid var(--borde);
+}
+
+.header__logo {
+    font-family: var(--titulo);
+    font-style: italic;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primario);
+}
+
+.header__nav {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+}
+
+.header__nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto);
+}
+
+.header__nav a:hover,
+.header__nav a.activo {
+    color: var(--primario);
+    text-decoration: none;
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-family: var(--cuerpo);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.btn-primario {
+    background: var(--primario);
+    color: #fff;
+}
+
+.btn-primario:hover {
+    background: var(--primario-dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--texto);
+    border: 2px solid var(--texto);
+}
+
+.btn-outline:hover {
+    background: var(--fondo-alt);
+    text-decoration: none;
+}
+
+.btn-bloque {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+}
+
+/* Campos de formulario */
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    font-family: var(--cuerpo);
+    font-size: 15px;
+    color: var(--texto);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    border-color: var(--primario);
+}
+
+/* Alerta de error */
+.alerta-error {
+    background: #fde8e8;
+    border: 1px solid #f5a5a5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #8b1a1a;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Etiqueta de categoria */
+.etiqueta {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primario);
+    margin-bottom: 8px;
+}
+
+/* Badge de estado */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.badge-pendiente  { background: #e8e8e8; color: #555; }
+.badge-aceptado   { background: #dbeafe; color: #1d4ed8; }
+.badge-produccion { background: #fed7aa; color: #9a3412; }
+.badge-listo      { background: #d1fae5; color: #065f46; }
+.badge-entregado  { background: #a7f3d0; color: #064e3b; }
+.badge-cancelado  { background: #f3f4f6; color: #6b7280; }
+
+/* Footer */
+.footer {
+    background: var(--fondo-alt);
+    border-top: 1px solid var(--borde);
+    padding: 48px 64px 24px;
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 32px;
+}
+
+.footer__logo {
+    font-family: var(--titulo);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--primario);
+    margin-bottom: 12px;
+}
+
+.footer__desc {
+    font-size: 14px;
+    color: var(--texto-suave);
+    line-height: 22px;
+    max-width: 260px;
+}
+
+.footer__col h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    color: var(--texto);
+}
+
+.footer__col a {
+    display: block;
+    font-size: 14px;
+    color: var(--texto-suave);
+    margin-bottom: 8px;
+}
+
+.footer__col a:hover {
+    color: var(--primario);
+    text-decoration: none;
+}
+
+.footer__copy {
+    font-size: 12px;
+    color: var(--texto-suave);
+    border-top: 1px solid var(--borde);
+    padding-top: 20px;
+    text-align: center;
+}
+
+/* Placeholder de imagen */
+.img-placeholder {
+    background: var(--fondo-alt);
+    border-radius: 8px;
+}

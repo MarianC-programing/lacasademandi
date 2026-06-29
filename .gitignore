@@ -1,0 +1,32 @@
+# ==================== Eclipse / IDE ====================
+.settings/
+.project
+.classpath
+.classpath.bak
+
+# ==================== Java Build ====================
+*.class
+build/
+*.war
+*.ear
+*.jar.original
+
+# ==================== Eclipse Build ================
+classes/
+bin/
+
+# ==================== Logs ====================
+*.log
+
+# ==================== OS ====================
+.DS_Store
+Thumbs.db
+
+# ==================== Runners local ====================
+# Ignorar solo el zip grande, NO los jars necesarios para correr el proyecto
+*.zip
+*.tar.gz
+*.7z
+
+# Si tienes backups locales
+git push --set-upstream origin main
