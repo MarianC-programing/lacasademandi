@@ -1,0 +1,297 @@
+/* ============================================================
+   ADMIN PANEL — La Casa de Mandi
+   Layout con sidebar lateral fija, siguiendo el wireframe.
+   Usa las mismas variables de color que estilos.css
+   ============================================================ */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ---------- SIDEBAR ---------- */
+.admin-sidebar {
+    width: 256px;
+    flex-shrink: 0;
+    background: var(--fondo-alt);
+    border-right: 1px solid var(--borde);
+    padding: 28px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-sidebar__logo {
+    font-family: var(--titulo);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primario);
+    margin-bottom: 2px;
+}
+
+.admin-sidebar__sub {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 32px;
+}
+
+.admin-sidebar__nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.admin-sidebar__nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--texto);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-sidebar__nav a:hover {
+    background: #fff;
+    text-decoration: none;
+}
+
+.admin-sidebar__nav a.activo {
+    background: var(--primario);
+    color: #fff;
+}
+
+.admin-sidebar__nav .icono {
+    font-size: 16px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.admin-sidebar__footer {
+    border-top: 1px solid var(--borde);
+    padding-top: 16px;
+    font-size: 13px;
+}
+
+.admin-sidebar__footer .nombre {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.admin-sidebar__footer a {
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+.admin-sidebar__footer a:hover { color: var(--primario); }
+
+/* ---------- CONTENIDO PRINCIPAL ---------- */
+.admin-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 48px 56px;
+}
+
+.admin-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    gap: 24px;
+}
+
+.admin-content-header h1 {
+    font-family: var(--titulo);
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.admin-content-header p {
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+/* ---------- FILTROS / PESTAÑAS ---------- */
+.admin-filtros {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tab-pill {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--borde);
+    background: var(--fondo-alt);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.tab-pill:hover { text-decoration: none; background: #ece6e4; }
+
+.tab-pill.activo {
+    background: var(--primario);
+    color: #fff;
+    border-color: var(--primario);
+}
+
+.admin-buscar {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.admin-buscar input {
+    padding: 9px 16px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    font-size: 13px;
+    font-family: var(--cuerpo);
+    width: 240px;
+    outline: none;
+}
+.admin-buscar input:focus { border-color: var(--primario); }
+
+/* ---------- TABLA ---------- */
+.admin-table-wrap {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.admin-table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.admin-table-wrap th, .admin-table-wrap td { padding: 16px 22px; text-align: left; border-bottom: 1px solid var(--borde); }
+.admin-table-wrap th {
+    font-weight: 600; background: var(--fondo-alt); color: var(--texto-suave);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.admin-table-wrap tr:last-child td { border-bottom: none; }
+.admin-table-wrap tr:hover td { background: #fafafa; }
+
+.admin-table-wrap .btn-sm {
+    padding: 6px 14px; font-size: 12px; border-radius: 999px;
+    background: var(--primario); color: #fff; text-decoration: none;
+}
+.admin-table-wrap .btn-sm:hover { background: var(--primario-dark); text-decoration: none; }
+
+.admin-paginacion {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 22px; font-size: 13px; color: var(--texto-suave);
+}
+
+/* ---------- STAT CARDS ---------- */
+.admin-stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px; margin-bottom: 28px;
+}
+.admin-stat-card {
+    background: #fff; border: 1px solid var(--borde);
+    border-radius: 14px; padding: 22px;
+}
+.admin-stat-card h3 {
+    font-size: 12px; color: var(--texto-suave); margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;
+}
+.admin-stat-card .num { font-family: var(--titulo); font-size: 36px; font-weight: 700; color: var(--primario); }
+.admin-stat-card.verde .num   { color: #16a34a; }
+.admin-stat-card.azul  .num   { color: #1d4ed8; }
+.admin-stat-card.naranja .num { color: #ea580c; }
+
+/* ---------- RESUMEN / EFICIENCIA ---------- */
+.admin-resumen-card {
+    background: #fff; border: 1px solid var(--borde);
+    border-radius: 14px; padding: 28px; margin-bottom: 24px;
+}
+.admin-resumen-card h2 { font-family: var(--titulo); font-size: 22px; margin-bottom: 20px; }
+
+.admin-tip {
+    background: var(--fondo-alt); border-radius: 14px; padding: 20px 24px;
+    font-size: 14px; color: var(--texto-suave); display: flex; gap: 12px; align-items: flex-start;
+}
+.admin-tip strong { color: var(--texto); }
+
+/* ---------- ALERTAS ---------- */
+.admin-alerta-exito,
+.admin-alerta-error {
+    border-radius: 10px; padding: 12px 18px; font-size: 14px; margin-bottom: 20px;
+}
+.admin-alerta-exito { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.admin-alerta-error { background: #fde8e8; border: 1px solid #f5a5a5; color: #8b1a1a; }
+
+/* ---------- DETALLE DE PEDIDO (admin) ---------- */
+.admin-detalle-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
+.admin-info-card { background:#fff; border:1px solid var(--borde); border-radius:14px; padding:28px; }
+.admin-info-card h2 { font-family: var(--titulo); font-size: 19px; margin-bottom: 22px; }
+.admin-info-fila { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid var(--borde); font-size:14px; }
+.admin-info-fila:last-child { border-bottom:none; }
+.admin-info-fila strong { flex-shrink:0; margin-right:16px; }
+.admin-info-fila span { color: var(--texto-suave); text-align:right; }
+
+.admin-acciones-card { background: var(--fondo-alt); border-radius:14px; padding:22px; }
+.admin-acciones-card h3 { font-family: var(--titulo); font-size: 17px; margin-bottom:14px; }
+.admin-acciones-card label { display:block; font-size:13px; font-weight:600; margin-bottom:6px; margin-top:14px; }
+.admin-acciones-card select, .admin-acciones-card input {
+    width:100%; padding:10px 14px; border:1px solid var(--borde); border-radius:8px; font-size:14px; font-family: var(--cuerpo);
+}
+.admin-acciones-card button {
+    width:100%; padding:11px; margin-top:14px; border:none; border-radius:999px;
+    background: var(--primario); color:#fff; font-weight:600; font-size:14px; cursor:pointer;
+}
+.admin-acciones-card button:hover { background: var(--primario-dark); }
+
+/* ---------- FOOTER DEL ADMIN (compacto, dentro del flujo) ---------- */
+.admin-footer {
+    background: var(--fondo-alt);
+    border-top: 1px solid var(--borde);
+    padding: 32px 56px;
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+.admin-footer__grid {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+    margin-bottom: 20px;
+}
+.admin-footer__brand .nombre {
+    font-family: var(--titulo); font-style: italic; font-size: 17px; color: var(--primario); margin-bottom: 4px;
+}
+.admin-footer__cols { display: flex; gap: 56px; }
+.admin-footer__cols h4 {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 10px; color: var(--texto);
+}
+.admin-footer__cols a { display: block; color: var(--texto-suave); margin-bottom: 6px; font-size: 13px; }
+.admin-footer__cols a:hover { color: var(--primario); text-decoration: none; }
+.admin-footer__copy { border-top: 1px solid var(--borde); padding-top: 16px; text-align: center; font-size: 12px; }
+
+@media (max-width: 960px) {
+    .admin-sidebar { display: none; }
+    .admin-content { padding: 28px; }
+    .admin-stats-grid, .admin-detalle-grid { grid-template-columns: 1fr; }
+}

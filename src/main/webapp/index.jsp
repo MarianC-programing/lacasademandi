@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List, dao.ProductoDAO, modelo.Producto, modelo.Variante" %>
+<%
+    List<Producto> destacados = new ProductoDAO().listarTodos();
+    if (destacados.size() > 3) destacados = destacados.subList(0, 3);
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -100,6 +105,7 @@
             font-size: 14px;
         }
         .precio { color: var(--primario); font-weight: 700; font-size: 16px; }
+        .sin-productos { text-align: center; color: var(--texto-suave); padding: 40px; }
 
         /* ---- Pasos ---- */
         .pasos { display: flex; gap: 48px; justify-content: center; margin-top: 40px; }
@@ -166,57 +172,41 @@
         </div>
     </section>
 
-    <!-- Productos destacados -->
+    <!-- Productos destacados (reales, desde la BD) -->
     <section class="seccion">
         <span class="etiqueta">Nuestros Favoritos</span>
         <h2 class="seccion__titulo">Dulces y Postres Destacados</h2>
         <p class="seccion__sub">Cada receta es un legado familiar preparada con ingredientes orgánicos.</p>
 
+        <% if (destacados.isEmpty()) { %>
+            <p class="sin-productos">Aún no hay productos cargados en el catálogo.</p>
+        <% } else { %>
         <div class="cards-grid">
-
+            <% for (Producto p : destacados) {
+                Variante primera = (p.getVariantes() != null && !p.getVariantes().isEmpty())
+                    ? p.getVariantes().get(0) : null;
+            %>
             <div class="card-producto">
                 <div class="card-producto__img">
-                    <img src="${pageContext.request.contextPath}/img/tres-leches.jpg" alt="Delicia Tres Leches Frutal" onerror="this.style.display='none'">
+                    <% if (p.getImagen() != null && !p.getImagen().isEmpty()) { %>
+                        <img src="${pageContext.request.contextPath}/img/<%= p.getImagen() %>"
+                             alt="<%= p.getNombre() %>" onerror="this.style.display='none'">
+                    <% } %>
                 </div>
                 <div class="card-producto__cuerpo">
-                    <p class="card-producto__cat">Dulce Tradicional</p>
-                    <h3 class="card-producto__nombre">Delicia Tres Leches Frutal</h3>
+                    <p class="card-producto__cat"><%= p.getNombreCategoria() %></p>
+                    <h3 class="card-producto__nombre"><%= p.getNombre() %></h3>
                     <div class="card-producto__pie">
-                        <span>desde <strong class="precio">$35.00</strong></span>
-                        <a href="${pageContext.request.contextPath}/jsp/publico/detalle-dulce.jsp">Ver detalles</a>
+                        <span>desde <strong class="precio">
+                            $<%= primera != null ? String.format("%.2f", primera.getPrecioBase()) : "--" %>
+                        </strong></span>
+                        <a href="${pageContext.request.contextPath}/jsp/publico/detalle-producto.jsp?id=<%= p.getIdProducto() %>">Ver detalles</a>
                     </div>
                 </div>
             </div>
-
-            <div class="card-producto">
-                <div class="card-producto__img">
-                    <img src="${pageContext.request.contextPath}/img/cheesecake-maracuya.jpg" alt="Cheesecake Tropical" onerror="this.style.display='none'">
-                </div>
-                <div class="card-producto__cuerpo">
-                    <p class="card-producto__cat">Repostería Fina</p>
-                    <h3 class="card-producto__nombre">Cheesecake Tropical de Maracuyá</h3>
-                    <div class="card-producto__pie">
-                        <span>desde <strong class="precio">$18.00</strong></span>
-                        <a href="${pageContext.request.contextPath}/jsp/publico/detalle-dulce.jsp">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-producto">
-                <div class="card-producto__img">
-                    <img src="${pageContext.request.contextPath}/img/frutos-bosque.jpg" alt="Cheesecake Frutos del Bosque" onerror="this.style.display='none'">
-                </div>
-                <div class="card-producto__cuerpo">
-                    <p class="card-producto__cat">Postres Individuales</p>
-                    <h3 class="card-producto__nombre">Cheesecake Frutos del Bosque</h3>
-                    <div class="card-producto__pie">
-                        <span>desde <strong class="precio">$3.00</strong></span>
-                        <a href="${pageContext.request.contextPath}/jsp/publico/detalle-postre.jsp">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
+            <% } %>
         </div>
+        <% } %>
 
         <div style="text-align:center; margin-top:40px;">
             <a href="${pageContext.request.contextPath}/jsp/publico/catalogo.jsp" class="btn btn-primario">Explorar todo el catálogo</a>
