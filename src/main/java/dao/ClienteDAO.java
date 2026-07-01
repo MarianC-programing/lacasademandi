@@ -7,6 +7,39 @@ import java.sql.*;
 
 public class ClienteDAO {
 
+    /** Lista todos los clientes registrados con su conteo de pedidos. */
+    public List<Cliente> listarTodos() throws SQLException {
+        List<Cliente> lista = new java.util.ArrayList<>();
+        String sql = "SELECT id_cliente, nombre, telefono, whatsapp, correo, fecha_registro " +
+                     "FROM Cliente ORDER BY fecha_registro DESC";
+        try (Connection conn = Conexion.get();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                c.setIdCliente(rs.getInt("id_cliente"));
+                c.setNombre(rs.getString("nombre"));
+                c.setTelefono(rs.getString("telefono"));
+                c.setWhatsapp(rs.getString("whatsapp"));
+                c.setCorreo(rs.getString("correo"));
+                lista.add(c);
+            }
+        }
+        return lista;
+    }
+
+    /** Cuenta los pedidos de un cliente. */
+    public int contarPedidos(int idCliente) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM Pedido WHERE id_cliente = ?";
+        try (Connection conn = Conexion.get();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idCliente);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        }
+    }
+
     /** Busca un cliente por correo o por WhatsApp. */
     public Cliente buscarPorCorreo(String correo) throws SQLException {
         return buscarPor("correo", correo);

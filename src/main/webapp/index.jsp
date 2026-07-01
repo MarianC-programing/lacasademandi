@@ -12,7 +12,7 @@
     <title>La Casa de Mandi — Dulces Hechos con Amor</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
     <style>
-        /* ---- Hero ---- */
+        /* Hereproo */
         .hero {
             display: grid;
             grid-template-columns: 1fr 1fr;

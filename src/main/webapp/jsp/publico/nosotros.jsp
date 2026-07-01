@@ -119,21 +119,6 @@
             gap: 12px;
             flex-shrink: 0;
         }
-        .btn-outline {
-            padding: 12px 24px;
-            border-radius: 8px;
-            border: 2px solid var(--primario);
-            color: var(--primario);
-            font-family: var(--cuerpo);
-            font-weight: 600;
-            font-size: 15px;
-            text-decoration: none;
-            transition: background 0.15s, color 0.15s;
-        }
-        .btn-outline:hover {
-            background: var(--primario);
-            color: #fff;
-        }
     </style>
 </head>
 <body>

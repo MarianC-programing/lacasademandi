@@ -14,28 +14,30 @@
     <ul class="admin-sidebar__nav">
         <li><a href="${pageContext.request.contextPath}/jsp/admin/dashboard.jsp"
                class="<%= "dashboard".equals(seccionActiva) ? "activo" : "" %>">
-            <span class="icono">&#9632;</span> Dashboard
+            <img class="icono" src="${pageContext.request.contextPath}/img/Icon/dashboard.png" alt=""> Dashboard
         </a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/admin/pedidos.jsp"
                class="<%= "pedidos".equals(seccionActiva) ? "activo" : "" %>">
-            <span class="icono">&#128722;</span> Pedidos
+            <img class="icono" src="${pageContext.request.contextPath}/img/Icon/pedido.png" alt=""> Pedidos
         </a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/admin/productos.jsp"
                class="<%= "productos".equals(seccionActiva) ? "activo" : "" %>">
-            <span class="icono">&#129489;</span> Inventario
+            <img class="icono" src="${pageContext.request.contextPath}/img/Icon/inventario.png" alt=""> Inventario
         </a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/admin/clientes.jsp"
                class="<%= "clientes".equals(seccionActiva) ? "activo" : "" %>">
-            <span class="icono">&#128101;</span> Clientes
+            <img class="icono" src="${pageContext.request.contextPath}/img/Icon/cliente.png" alt=""> Clientes
         </a></li>
         <li><a href="${pageContext.request.contextPath}/jsp/admin/capacidad.jsp"
                class="<%= "configuracion".equals(seccionActiva) ? "activo" : "" %>">
-            <span class="icono">&#9881;</span> Configuración
+            <img class="icono" src="${pageContext.request.contextPath}/img/Icon/ajustes.png" alt=""> Configuracion
         </a></li>
     </ul>
 
     <div class="admin-sidebar__footer">
         <div class="nombre"><%= nombreAdmin %></div>
-        <a href="${pageContext.request.contextPath}/logout">Cerrar sesión</a>
+        <a href="${pageContext.request.contextPath}/logout">
+            <img class="icono-logout" src="${pageContext.request.contextPath}/img/Icon/logout.png" alt=""> Cerrar sesion
+        </a>
     </div>
 </aside>

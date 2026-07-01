@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List, dao.PedidoDAO, modelo.Pedido" %>
+<%@ page import="java.util.List, dao.PedidoDAO, dao.PagoDAO, modelo.Pedido, modelo.Abono, modelo.PagoFinal" %>
 <%-- Admin - Gestión de Pedidos --%>
 <%
     String rol = (String) session.getAttribute("rol");
@@ -13,9 +13,14 @@
     // ¿Vista de detalle de un pedido específico?
     String idParam = request.getParameter("id");
     Pedido pedidoDetalle = null;
+    Abono     abonoDetalle     = null;
+    PagoFinal pagoFinalDetalle = null;
     if (idParam != null && !idParam.trim().isEmpty()) {
         try {
-            pedidoDetalle = pedidoDAO.buscarPorId(Integer.parseInt(idParam.trim()));
+            pedidoDetalle     = pedidoDAO.buscarPorId(Integer.parseInt(idParam.trim()));
+            PagoDAO pagoDAO   = new PagoDAO();
+            abonoDetalle      = pagoDAO.buscarAbonoPorPedido(Integer.parseInt(idParam.trim()));
+            pagoFinalDetalle  = pagoDAO.buscarPagoFinalPorPedido(Integer.parseInt(idParam.trim()));
         } catch (NumberFormatException ignored) {}
     }
 
@@ -54,6 +59,18 @@
     <title>Gestión de Pedidos — La Casa de Mandi</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
+    <style>
+        .admin-table-wrap table { table-layout: fixed; }
+        .admin-table-wrap col.col-num      { width: 8%; }
+        .admin-table-wrap col.col-cliente  { width: 16%; }
+        .admin-table-wrap col.col-producto { width: 28%; }
+        .admin-table-wrap col.col-fecha    { width: 14%; }
+        .admin-table-wrap col.col-estado   { width: 14%; }
+        .admin-table-wrap col.col-total    { width: 10%; }
+        .admin-table-wrap col.col-accion   { width: 10%; }
+        .admin-table-wrap td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .admin-table-wrap td.col-producto-celda { white-space: normal; }
+    </style>
 </head>
 <body>
 <div class="admin-layout">
@@ -134,6 +151,51 @@
                         </form>
                     </div>
 
+                    <%-- PANEL DE PAGOS DEL ADMIN --%>
+                    <div class="admin-acciones-card" style="margin-top:20px;">
+                        <h3>Abono (50%)</h3>
+                        <% if (abonoDetalle == null) { %>
+                            <p style="font-size:13px;color:var(--texto-suave);">El cliente no ha registrado abono.</p>
+                        <% } else if (abonoDetalle.isConfirmado()) { %>
+                            <p style="font-size:13px;color:#16a34a;font-weight:600;">✓ Confirmado — $<%= String.format("%.2f", abonoDetalle.getMonto()) %></p>
+                            <p style="font-size:12px;color:var(--texto-suave);">Vía <%= abonoDetalle.getMetodoPago() %> · Ref: <%= abonoDetalle.getReferencia() != null ? abonoDetalle.getReferencia() : "—" %></p>
+                        <% } else { %>
+                            <p style="font-size:13px;font-weight:600;">$<%= String.format("%.2f", abonoDetalle.getMonto()) %> — <%= abonoDetalle.getMetodoPago() %></p>
+                            <p style="font-size:12px;color:var(--texto-suave);margin-bottom:12px;">Ref: <%= abonoDetalle.getReferencia() != null ? abonoDetalle.getReferencia() : "—" %> · <%= abonoDetalle.getFechaPago() %></p>
+                            <form action="${pageContext.request.contextPath}/pago" method="POST" style="display:inline;">
+                                <input type="hidden" name="accion"    value="conf_abono">
+                                <input type="hidden" name="id_pedido" value="<%= pedidoDetalle.getIdPedido() %>">
+                                <button type="submit">✓ Confirmar abono</button>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/pago" method="POST" style="display:inline;margin-top:8px;">
+                                <input type="hidden" name="accion"    value="rech_abono">
+                                <input type="hidden" name="id_pedido" value="<%= pedidoDetalle.getIdPedido() %>">
+                                <button type="submit" style="background:var(--fondo-alt);color:var(--texto);">✗ Rechazar</button>
+                            </form>
+                        <% } %>
+
+                        <h3 style="margin-top:20px;">Pago Final (50%)</h3>
+                        <% if (pagoFinalDetalle == null) { %>
+                            <p style="font-size:13px;color:var(--texto-suave);">El cliente no ha registrado el pago final.</p>
+                        <% } else if (pagoFinalDetalle.isConfirmado()) { %>
+                            <p style="font-size:13px;color:#16a34a;font-weight:600;">✓ Confirmado — $<%= String.format("%.2f", pagoFinalDetalle.getMonto()) %></p>
+                            <p style="font-size:12px;color:var(--texto-suave);">Vía <%= pagoFinalDetalle.getMetodoPago() %> · Ref: <%= pagoFinalDetalle.getReferencia() != null ? pagoFinalDetalle.getReferencia() : "—" %></p>
+                        <% } else { %>
+                            <p style="font-size:13px;font-weight:600;">$<%= String.format("%.2f", pagoFinalDetalle.getMonto()) %> — <%= pagoFinalDetalle.getMetodoPago() %></p>
+                            <p style="font-size:12px;color:var(--texto-suave);margin-bottom:12px;">Ref: <%= pagoFinalDetalle.getReferencia() != null ? pagoFinalDetalle.getReferencia() : "—" %> · <%= pagoFinalDetalle.getFechaPago() %></p>
+                            <form action="${pageContext.request.contextPath}/pago" method="POST" style="display:inline;">
+                                <input type="hidden" name="accion"    value="conf_final">
+                                <input type="hidden" name="id_pedido" value="<%= pedidoDetalle.getIdPedido() %>">
+                                <button type="submit">✓ Confirmar pago final</button>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/pago" method="POST" style="display:inline;margin-top:8px;">
+                                <input type="hidden" name="accion"    value="rech_final">
+                                <input type="hidden" name="id_pedido" value="<%= pedidoDetalle.getIdPedido() %>">
+                                <button type="submit" style="background:var(--fondo-alt);color:var(--texto);">✗ Rechazar</button>
+                            </form>
+                        <% } %>
+                    </div>
+
                     <a href="${pageContext.request.contextPath}/jsp/admin/pedidos.jsp"
                        class="btn btn-outline" style="display:block; text-align:center; margin-top:14px;">
                         ← Volver a la lista
@@ -171,6 +233,15 @@
 
             <div class="admin-table-wrap">
                 <table>
+                    <colgroup>
+                        <col class="col-num">
+                        <col class="col-cliente">
+                        <col class="col-producto">
+                        <col class="col-fecha">
+                        <col class="col-estado">
+                        <col class="col-total">
+                        <col class="col-accion">
+                    </colgroup>
                     <thead>
                         <tr><th>N° Pedido</th><th>Cliente</th><th>Producto</th><th>Fecha Entrega</th><th>Estado</th><th>Total</th><th>Acción</th></tr>
                     </thead>
@@ -184,7 +255,7 @@
                         <tr>
                             <td>#<%= p.getIdPedido() %></td>
                             <td><%= p.getNombreCliente() %></td>
-                            <td><%= p.getNombreProducto() %> / <%= p.getTamanoVariante() %></td>
+                            <td class="col-producto-celda"><%= p.getNombreProducto() %> / <%= p.getTamanoVariante() %></td>
                             <td><%= p.getFechaEntrega() %></td>
                             <td><span class="badge <%= bc %>"><%= p.getEstado() %></span></td>
                             <td>$<%= String.format("%.2f", p.getPrecioTotal()) %></td>

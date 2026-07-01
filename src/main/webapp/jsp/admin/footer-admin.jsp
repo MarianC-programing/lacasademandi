@@ -4,7 +4,7 @@
     <div class="admin-footer__grid">
         <div class="admin-footer__brand">
             <div class="nombre">La Casa de Mandi</div>
-            <p>Dulces caseros con alma artesanal.<br>Llevando el sabor de casa a tu mesa todos los días.</p>
+            <p>Dulces caseros con alma artesanal.<br>Llevando el sabor de casa a tu mesa todos los dias.</p>
         </div>
         <div class="admin-footer__cols">
             <div>
@@ -16,7 +16,7 @@
             <div>
                 <h4>Soporte</h4>
                 <a href="#">Ayuda Admin</a>
-                <a href="#">Términos y Condiciones</a>
+                <a href="#">Terminos y Condiciones</a>
                 <a href="#">Privacidad</a>
             </div>
         </div>

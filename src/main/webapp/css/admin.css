@@ -1,15 +1,13 @@
-/* ============================================================
-   ADMIN PANEL — La Casa de Mandi
+/* ADMIN PANEL — La Casa de Mandi
    Layout con sidebar lateral fija, siguiendo el wireframe.
-   Usa las mismas variables de color que estilos.css
-   ============================================================ */
+   Usa las mismas variables de color que estilos.css */
 
 .admin-layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* ---------- SIDEBAR ---------- */
+/* SIDEBAR */
 .admin-sidebar {
     width: 256px;
     flex-shrink: 0;
@@ -70,10 +68,14 @@
 }
 
 .admin-sidebar__nav .icono {
-    font-size: 16px;
     width: 18px;
-    text-align: center;
+    height: 18px;
     flex-shrink: 0;
+    object-fit: contain;
+}
+
+.admin-sidebar__nav a.activo .icono {
+    filter: brightness(0) invert(1);
 }
 
 .admin-sidebar__footer {
@@ -90,10 +92,18 @@
 .admin-sidebar__footer a {
     color: var(--texto-suave);
     font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 .admin-sidebar__footer a:hover { color: var(--primario); }
+.admin-sidebar__footer .icono-logout {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
 
-/* ---------- CONTENIDO PRINCIPAL ---------- */
+/* CONTENIDO PRINCIPAL */
 .admin-main {
     flex: 1;
     display: flex;
@@ -126,7 +136,7 @@
     font-size: 14px;
 }
 
-/* ---------- FILTROS / PESTAÑAS ---------- */
+/* FILTROS / PESTAÑAS  */
 .admin-filtros {
     background: #fff;
     border: 1px solid var(--borde);
@@ -178,7 +188,7 @@
 }
 .admin-buscar input:focus { border-color: var(--primario); }
 
-/* ---------- TABLA ---------- */
+/* TABLA */
 .admin-table-wrap {
     background: #fff;
     border: 1px solid var(--borde);
@@ -198,6 +208,7 @@
 .admin-table-wrap .btn-sm {
     padding: 6px 14px; font-size: 12px; border-radius: 999px;
     background: var(--primario); color: #fff; text-decoration: none;
+    white-space: nowrap; display: inline-block;
 }
 .admin-table-wrap .btn-sm:hover { background: var(--primario-dark); text-decoration: none; }
 
@@ -206,7 +217,7 @@
     padding: 16px 22px; font-size: 13px; color: var(--texto-suave);
 }
 
-/* ---------- STAT CARDS ---------- */
+/* STAT CARDS */
 .admin-stats-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 20px; margin-bottom: 28px;
@@ -224,7 +235,7 @@
 .admin-stat-card.azul  .num   { color: #1d4ed8; }
 .admin-stat-card.naranja .num { color: #ea580c; }
 
-/* ---------- RESUMEN / EFICIENCIA ---------- */
+/*  RESUMEN / EFICIENCIA */
 .admin-resumen-card {
     background: #fff; border: 1px solid var(--borde);
     border-radius: 14px; padding: 28px; margin-bottom: 24px;
@@ -237,7 +248,7 @@
 }
 .admin-tip strong { color: var(--texto); }
 
-/* ---------- ALERTAS ---------- */
+/*  ALERTAS */
 .admin-alerta-exito,
 .admin-alerta-error {
     border-radius: 10px; padding: 12px 18px; font-size: 14px; margin-bottom: 20px;
@@ -245,7 +256,7 @@
 .admin-alerta-exito { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
 .admin-alerta-error { background: #fde8e8; border: 1px solid #f5a5a5; color: #8b1a1a; }
 
-/* ---------- DETALLE DE PEDIDO (admin) ---------- */
+/*  DETALLE DE PEDIDO (admin) */
 .admin-detalle-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; }
 .admin-info-card { background:#fff; border:1px solid var(--borde); border-radius:14px; padding:28px; }
 .admin-info-card h2 { font-family: var(--titulo); font-size: 19px; margin-bottom: 22px; }
@@ -266,7 +277,7 @@
 }
 .admin-acciones-card button:hover { background: var(--primario-dark); }
 
-/* ---------- FOOTER DEL ADMIN (compacto, dentro del flujo) ---------- */
+/* FOOTER DEL ADMIN (compacto, dentro del flujo)*/
 .admin-footer {
     background: var(--fondo-alt);
     border-top: 1px solid var(--borde);

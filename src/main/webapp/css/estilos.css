@@ -239,6 +239,7 @@ img {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    white-space: nowrap;
 }
 
 .badge-pendiente  { background: #e8e8e8; color: #555; }

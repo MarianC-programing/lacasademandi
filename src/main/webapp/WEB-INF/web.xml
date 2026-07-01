@@ -46,6 +46,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>PagoServlet</servlet-name>
+        <servlet-class>controlador.PagoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PagoServlet</servlet-name>
+        <url-pattern>/pago</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controlador.LogoutServlet</servlet-class>
     </servlet>
