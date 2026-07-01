@@ -1,118 +1,97 @@
 # La Casa de Mandi — Proyecto Semestral
 
-Plataforma web para pasteleria La Casa de Mandi. Proyecto semestral de Programacion 2.
+## 📌 Visión General
+La Casa de Mandi es una plataforma web para una pastelería artesanal panameña que digitaliza todo el ciclo de pedidos personalizados. El cliente puede ver el catálogo, crear pedidos, hacer pagos parcial (abonos) y finales, y rastrear el estado en tiempo real. El administrador gestiona pedidos, pagos, inventario y controla la capacidad diaria (máximo 5 pedidos por día).
 
-## Stack tecnologico
-
-| Capa          | Tecnologia                           |
-|---------------|--------------------------------------|
-| Frontend      | HTML5, CSS3, JSP                     |
-| Backend       | Java Servlets (Jakarta EE / Tomcat 9+) |
-| Base de datos | MySQL (XAMPP)                        |
-| IDE           | Eclipse IDE                          |
-
-## Estructura del proyecto
-
+## 🛠️ Tecnologías
+| Capa | Tecnología |
+|------|-----------|
+| Frontend | HTML5, CSS3, JSP |
+| Backend | Java (Servlets, JSP), Jakarta EE, Tomcat 9 |
+| Base de datos | MySQL (utf8mb4) |
+|
+## 🚀 Arquitectura
 ```
 LacasadeMandi/
+├── build/                        # clases compiladas (.class)
 ├── database/
-│   ├── schema.sql          -- Esquema completo de 10 tablas en MySQL
-│   ├── seed.sql            -- Datos de prueba (catalogo real + clientes + pedidos)
-│   └── admin.sql           -- Cuenta de administrador
-├── docs/
-│   └── contexto-proyecto-lacasademandi.md  -- Vision general, requisitos y tareas
-├── src/main/
-│   ├── java/
-│   │   ├── controlador/    -- Servlets (Login, Registro, Pedido, Perfil, Logout)
-│   │   ├── modelo/           -- Clases Java (beans): Cliente, Producto, Pedido, ...
-│   │   ├── dao/            -- Clases DAO para acceso a base de datos
-│   │   └── util/           -- Utilidades (Conexion.java)
-│   └── webapp/
-│       ├── index.jsp                    -- Pagina de inicio
-│       ├── login.jsp                    -- Login dual (correo o WhatsApp) con BCrypt
-│       ├── css/
-│       │   ├── estilos.css              -- Estilos base del sitio (terracota #a23c3e)
-│       │   └── admin.css                -- Estilos del panel de administracion
-│       ├── img/                         -- Fotos del equipo y productos
-│       ├── jsp/layouts/
-│       │   ├── header.jsp               -- Header reutilizable con navegacion
-│       │   └── footer.jsp               -- Footer reutilizable
-│       ├── jsp/publico/
-│       │   ├── catalogo.jsp             -- Catalogo con tabs Dulces/Postres (dinamico)
-│       │   ├── detalle-producto.jsp     -- Detalle de un producto
-│       │   ├── contacto.jsp             -- Formulario de contacto
-│       │   ├── nosotros.jsp             -- PagTruncada en la pagina Sobre Nosotros
-│       │   └── registro.jsp             -- Registro de nuevos clientes
-│       ├── jsp/cliente/
-│       │   ├── mis-pedidos.jsp          -- Lista de pedidos del cliente
-│       │   ├── nuevo-pedido.jsp         -- Formulario de nuevo pedido
-│       │   ├── detalle-pedido.jsp       -- Detalle de un pedido especifico
-│       │   └── mi-perfil.jsp            -- Editar datos personales
-│       └── jsp/admin/
-│           ├── dashboard.jsp            -- Panel de control del admin
-│           ├── pedidos.jsp              -- Gestion de pedidos con filtros
-│           └── productos.jsp            -- Gestion de productos
-└── README.md
+│   ├── schema.sql                # 10 tablas principales
+│   ├── seed.sql                   # datos de catálogo + 8 pedidos de prueba
+│   └── admin.sql                  # cuenta de administrador
+├── docs/                          # documentación oficial del proyecto
+├── src/main/java/
+│   ├── controlador/                # Servlets (Login, Registro, Pedido, Perfil, Pago, Logout)
+│   ├── modelo/                    # Bean de dominio (Cliente, Pedido, Producto, etc.)
+│   ├── dao/                      # DAO con conexiones centralizadas (Conexion.java)
+│   └── util/                      # utilidades de conexión
+└── src/main/webapp/
+    ├── index.jsp                 # landing page
+    ├── login.jsp                 # login dual (correo/WhatsApp)
+    ├── WEB-INF/
+    │   ├── web.xml                # mapeo de servlets
+    │   └── lib/                   # mysql‑connector‑j, jbcrypt
+    ├── css/                     # estilos base y admin
+    ├── img/                     # asset de logos, hero, iconos
+    ├── jsp/
+    │   ├── layouts/             # header/footer dinámicos
+    │   ├── publico/             # catálogo, detalle, nosotros, registro
+    │   ├── cliente/              # mis‑pedidos, nuevo‑pedido, detalle‑pedido, mi‑perfil
+    │   └── admin/                # dashboard, pedidos, productos, clientes, sidebar, footer
 ```
 
-## Requisitos para ejecutar
+## ✨ Estado actual
+| Componente | Estatus |
+|------------|---------|
+| **Banco de datos** | Estructura completa (`schema.sql`), datos iniciales cargados. |
+| **Bean‑DAO‑Servlet** | Todos funcionales, con validaciones de correo/WhatsApp y BCrypt. |
+| **Pago** | Modelo y DAO totalmente funcionales (abonos y pagos finales). |
+| **Frontend Cliente** | Detalle‑pedido, nuevos‑pedido, mis‑pedidos, etc., conectados a BD, cálculo de totales en vivo. |
+| **Frontend Admin** | Dashboard con contadores reales, pedidos, productos, clientes, sidebar reutilizable. |
+| **Autenticación** | Login dual, sesiones con roles, validaciones de propiedades del pedido. |
+| **Otras vistas** | Registro, nosotros, catalogo. |
+| **Commit pendientes** | Páginas `capacidad.jsp` y `reportes.jsp`, módulo de capacidad de entregas, reportes de ingresos. |
 
-- Eclipse IDE con Tomcat 9+ configurado
-- XAMPP con MySQL activo
-- Java 21
-- MySQL Connector (`mysql-connector-j-9.x.jar`) en `WEB-INF/lib/` o referenciado en `.classpath`
+## ⚙️ Procedimientos de montaje
+1. **Clonar repositorio**
+   ```bash
+   git clone https://github.com/tu-usuario/LacasadeMandi.git
+   ```
+2. **Configurar BD**
+   ```sql
+   CREATE DATABASE la_casa_de_mandi CHARACTER SET utf8mb4;
+   USE la_casa_de_mandi;
+   SOURCE database/schema.sql;
+   SOURCE database/seed.sql;
+   ```
+3. **Arrancar Tomcat** (o cualquier contenedor compatible con Jakarta EE 9)
+   ```bash
+   cd $TOMCAT_HOME/bin
+   ./startup.sh
+   ```
+4. **Visita** `http://localhost:8080`.
 
-## Configurar la base de datos
-
-1. Abrir phpMyAdmin: `http://localhost/phpmyadmin`
-2. Importar en orden:
-   - `database/schema.sql`
-   - `database/seed.sql`
-   - `database/admin.sql`
-
-## Cuentas de prueba
-
-| Tipo    | Correo                    | Contraseña  |
-|---------|---------------------------|-------------|
-| Admin   | mandi.admin@gmail.com     | MandiWorld  |
-| Cliente | ana.perez@gmail.com       | cliente123  |
-
-## Estado actual del proyecto
-
-### Implementado
-
-- **Arquitectura MVC completa** con Servlets, DAOs y Beans
-- **Login dual** (correo o WhatsApp) con BCrypt
-- **Registro de clientes**
-- **Catalogo de productos** conectado a la base de datos
-- **Detalle de producto** dinamico
-- **Creacion de pedidos** por parte del cliente
-- **Listado de pedidos** del cliente
-- **Panel de administracion** con dashboard y gestion de pedidos
-- **Proteccion de rutas** por rol (cliente / admin)
-- **Gestion de sesiones** con logout
-
-### En desarrollo / pendiente
-
-- Modulo de reportes (RF06)
-- Gestion de capacidad de entregas (RF05)
-- Modulo de abonos y pagos finales
-- Pagina de error 404 personalizada
-- Responsive design mejorado en movil
-
-## Flujo del negocio
-
+## 🧪 Pruebas
+El proyecto usa JUnit y Mockito a través de Maven (se encuentra el pom.xml en la raíz). Ejecútalas con:
+```bash
+mvn test
 ```
-Catalogo (Dulces y Postres) -> Pedido con diseno a medida
-      -> Abono verificado por admin -> Produccion
-      -> Pago final verificado -> Entrega
-```
+Los resultados aparecen en `target/surefire-reports`.
 
-## Equipo
+## 🔥 Próximas tareas
+- Páginas `capacidad.jsp` y `reportes.jsp` (admin). 
+- Módulo de capacidad de entregas (limite 5 pedidos por día). 
+- Resumir ingresos mensual y productos más solicitados. 
+- Página de error 404 personalizada. 
+- Mejorar responsive en móvil.
 
-| Nombre           | Cedula     | Rama Git                  |
-|------------------|------------|---------------------------|
-| Marian Barba     | 8-1012-213 | feature/admin-panel       |
-| Gabriela Fuentes | 8-1042-245 | feature/auth-onboarding   |
-| Laura Orellana   | E-8-221893 | feature/catalogo-publico  |
-| Evelin Pineda    | 8-1031-1126| feature/pedidos-pagos-cliente|
+## 🎯 Roadmap
+| Prioridad | Feature |
+|-----------|---------|
+| Urgente | Módulo de pagos y confirmaciones. |
+| Alta | Control de capacidad de entregas. |
+| Media | Páginas de reportes e informes. |
+| Baja | Políticas de seguridad, API REST futura. |
+
+---
+
+*Documento generado automáticamente a partir del análisis del código fuente.*
