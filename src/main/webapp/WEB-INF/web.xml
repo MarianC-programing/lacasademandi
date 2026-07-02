@@ -46,6 +46,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>CapacidadServlet</servlet-name>
+        <servlet-class>controlador.CapacidadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CapacidadServlet</servlet-name>
+        <url-pattern>/capacidad</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProductoServlet</servlet-name>
+        <servlet-class>controlador.ProductoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductoServlet</servlet-name>
+        <url-pattern>/producto</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>PagoServlet</servlet-name>
         <servlet-class>controlador.PagoServlet</servlet-class>
     </servlet>
