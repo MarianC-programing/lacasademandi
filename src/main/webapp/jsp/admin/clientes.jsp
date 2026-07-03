@@ -18,6 +18,27 @@
             !c.getWhatsapp().toLowerCase().contains(b)
         );
     }
+
+    // Paginacion
+    final int TAM_PAGINA = 10;
+    int totalClientes = clientes.size();
+    int totalPaginas  = Math.max(1, (int) Math.ceil(totalClientes / (double) TAM_PAGINA));
+    int paginaActual  = 1;
+    if (request.getParameter("pagina") != null) {
+        try { paginaActual = Integer.parseInt(request.getParameter("pagina")); } catch (NumberFormatException ignored) {}
+    }
+    if (paginaActual < 1) paginaActual = 1;
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+
+    List<Cliente> clientesPagina = clientes;
+    if (!clientes.isEmpty()) {
+        int desde = (paginaActual - 1) * TAM_PAGINA;
+        int hasta = Math.min(desde + TAM_PAGINA, totalClientes);
+        clientesPagina = clientes.subList(desde, hasta);
+    }
+
+    String qsBase = busqueda != null && !busqueda.isEmpty()
+        ? "buscar=" + java.net.URLEncoder.encode(busqueda, "UTF-8") : "";
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -113,7 +134,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <% if (clientes.isEmpty()) { %>
+                    <% if (clientesPagina.isEmpty()) { %>
                         <tr>
                             <td colspan="6" style="text-align:center;color:var(--texto-suave);padding:40px;">
                                 <%= busqueda != null && !busqueda.isEmpty()
@@ -123,7 +144,7 @@
                         </tr>
                     <% } else {
                         ClienteDAO dao = new ClienteDAO();
-                        for (Cliente c : clientes) {
+                        for (Cliente c : clientesPagina) {
                             int numPedidos = dao.contarPedidos(c.getIdCliente());
                             String inicial = c.getNombre().substring(0,1).toUpperCase();
                     %>
@@ -148,7 +169,22 @@
                     </tbody>
                 </table>
                 <div class="admin-paginacion">
-                    <span>Mostrando <%= clientes.size() %> cliente<%= clientes.size() != 1 ? "s" : "" %></span>
+                    <span>
+                        <% if (totalClientes == 0) { %>
+                            Mostrando 0 clientes
+                        <% } else { %>
+                            Mostrando <%= (paginaActual - 1) * TAM_PAGINA + 1 %>–<%= Math.min(paginaActual * TAM_PAGINA, totalClientes) %> de <%= totalClientes %> cliente<%= totalClientes != 1 ? "s" : "" %>
+                        <% } %>
+                    </span>
+                    <% if (totalPaginas > 1) { %>
+                    <div style="display:flex; gap:6px; align-items:center;">
+                        <a class="btn-sm <%= paginaActual <= 1 ? "disabled" : "" %>"
+                           href="${pageContext.request.contextPath}/jsp/admin/clientes.jsp?<%= qsBase %>&pagina=<%= Math.max(1, paginaActual - 1) %>">← Anterior</a>
+                        <span style="font-size:12px;color:var(--texto-suave);">Página <%= paginaActual %> de <%= totalPaginas %></span>
+                        <a class="btn-sm <%= paginaActual >= totalPaginas ? "disabled" : "" %>"
+                           href="${pageContext.request.contextPath}/jsp/admin/clientes.jsp?<%= qsBase %>&pagina=<%= Math.min(totalPaginas, paginaActual + 1) %>">Siguiente →</a>
+                    </div>
+                    <% } %>
                 </div>
             </div>
 

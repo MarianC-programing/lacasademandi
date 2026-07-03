@@ -1,5 +1,5 @@
 <%-- Header reutilizable
-     Antes del include: request.setAttribute("paginaActiva", "inicio|catalogo|nosotros|contacto|pedidos");
+     Antes del include: request.setAttribute("paginaActiva", "inicio|catalogo|nosotros|pedidos");
 --%>
 <%
     String paginaActiva = request.getAttribute("paginaActiva") != null

@@ -55,9 +55,30 @@
             font-size:15px; font-weight:600; cursor:pointer; margin-top:8px; transition:background 0.15s;
         }
         .btn-submit:hover { background:var(--primario-dark); }
+
+        .btn-home {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--texto-suave);
+            background: #fff;
+            padding: 8px 14px;
+            border-radius: 999px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-decoration: none;
+            z-index: 10;
+        }
+        .btn-home:hover { color: var(--primario); text-decoration: none; }
     </style>
 </head>
 <body>
+
+<a href="${pageContext.request.contextPath}/index.jsp" class="btn-home">← Inicio</a>
 
 <div class="registro-wrap">
 

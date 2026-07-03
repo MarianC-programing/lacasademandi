@@ -211,6 +211,10 @@
     white-space: nowrap; display: inline-block;
 }
 .admin-table-wrap .btn-sm:hover { background: var(--primario-dark); text-decoration: none; }
+.admin-table-wrap .btn-sm.disabled {
+    background: var(--fondo-alt); color: var(--texto-suave);
+    pointer-events: none; opacity: 0.6;
+}
 
 .admin-paginacion {
     display: flex; align-items: center; justify-content: space-between;

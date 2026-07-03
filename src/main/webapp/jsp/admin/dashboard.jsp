@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="dao.PedidoDAO, java.util.List, modelo.Pedido" %>
+<%@ page import="dao.PedidoDAO, dao.ProductoDAO, java.util.List, modelo.Pedido, modelo.Producto" %>
 <%
     String rol = (String) session.getAttribute("rol");
     if (!"admin".equals(rol)) {
@@ -15,6 +15,12 @@
 
     List<Pedido> recientes = pedidoDAO.listarTodos(null);
     List<Pedido> ultimos   = recientes.size() > 5 ? recientes.subList(0, 5) : recientes;
+
+    // Resumen de inventario (a partir de la disponibilidad real de productos/variantes)
+    ProductoDAO productoDAO   = new ProductoDAO();
+    int[] inventario          = productoDAO.contarDisponibilidad(); // [activos, inactivos, variantesInactivas]
+    List<Producto> sinStock   = productoDAO.listarNoDisponibles();
+    List<Producto> sinStockTop = sinStock.size() > 3 ? sinStock.subList(0, 3) : sinStock;
 
     // Saludo según hora del día
     java.util.Calendar cal = java.util.Calendar.getInstance();
@@ -160,19 +166,6 @@
         }
         .resumen-fila:last-child { border-bottom: none; }
         .resumen-fila .pendiente-cobro { color: var(--primario); font-weight: 600; }
-        .btn-reporte {
-            display: block;
-            margin-top: 16px;
-            padding: 10px;
-            text-align: center;
-            border: 1px solid var(--borde);
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--texto);
-            text-decoration: none;
-        }
-        .btn-reporte:hover { background: var(--fondo-alt); text-decoration: none; }
 
         .insumo-fila {
             display: flex; align-items: center; justify-content: space-between;
@@ -339,35 +332,48 @@
                             <span class="pendiente-cobro">Pendiente de Cobro</span>
                             <span class="pendiente-cobro">$0.00</span>
                         </div>
-                        <a href="#" class="btn-reporte">Descargar Reporte</a>
                     </div>
 
                     <div class="card">
                         <div class="card__header">
-                            <h2><img src="${pageContext.request.contextPath}/img/Icon/insumos.png" alt="">Insumos</h2>
+                            <h2><img src="${pageContext.request.contextPath}/img/Icon/insumos.png" alt="">Inventario</h2>
                         </div>
                         <div class="insumo-fila">
                             <div class="insumo-nombre">
-                                <strong>Harina de Fuerza</strong>
-                                <span>Stock bajo: 2kg</span>
+                                <strong>Productos activos</strong>
+                                <span><%= inventario[0] %> disponibles en el catálogo</span>
+                            </div>
+                            <div class="insumo-dot verde"></div>
+                        </div>
+                        <% if (sinStockTop.isEmpty()) { %>
+                        <div class="insumo-fila">
+                            <div class="insumo-nombre">
+                                <strong>Sin stock / no disponibles</strong>
+                                <span>Ningún producto pausado</span>
+                            </div>
+                            <div class="insumo-dot verde"></div>
+                        </div>
+                        <% } else {
+                            for (Producto p : sinStockTop) {
+                        %>
+                        <div class="insumo-fila">
+                            <div class="insumo-nombre">
+                                <strong><%= p.getNombre() %></strong>
+                                <span>No disponible</span>
                             </div>
                             <div class="insumo-dot rojo"></div>
                         </div>
+                        <% } } %>
+                        <% if (inventario[2] > 0) { %>
                         <div class="insumo-fila">
                             <div class="insumo-nombre">
-                                <strong>Mantequilla Artesanal</strong>
-                                <span>Normal: 15kg</span>
+                                <strong>Variantes pausadas</strong>
+                                <span><%= inventario[2] %> variante<%= inventario[2] != 1 ? "s" : "" %> sin disponibilidad</span>
                             </div>
-                            <div class="insumo-dot verde"></div>
+                            <div class="insumo-dot rojo"></div>
                         </div>
-                        <div class="insumo-fila">
-                            <div class="insumo-nombre">
-                                <strong>Vainas de Vainilla</strong>
-                                <span>Normal: 50u</span>
-                            </div>
-                            <div class="insumo-dot verde"></div>
-                        </div>
-                        <a href="#" class="gestionar-link">Gestionar Stock <img src="${pageContext.request.contextPath}/img/Icon/inventario.png" alt=""></a>
+                        <% } %>
+                        <a href="${pageContext.request.contextPath}/jsp/admin/productos.jsp" class="gestionar-link">Gestionar Inventario <img src="${pageContext.request.contextPath}/img/Icon/inventario.png" alt=""></a>
                     </div>
 
                     <div class="banner-artesanal">

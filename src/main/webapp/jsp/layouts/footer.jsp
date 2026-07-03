@@ -6,7 +6,7 @@
             <p class="footer__desc">Llevando el sabor de lo casero a tu mesa con ingredientes 100% naturales y recetas tradicionales.</p>
         </div>
         <div class="footer__col">
-            <h4>Si­guenos</h4>
+            <h4>Siguenos</h4>
             <a href="#">Instagram</a>
             <a href="#">Facebook</a>
             <a href="#">WhatsApp</a>

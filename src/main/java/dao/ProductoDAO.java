@@ -217,6 +217,40 @@ public class ProductoDAO {
         }
     }
 
+    /** Productos marcados como no disponibles (para el resumen de inventario del dashboard). */
+    public List<Producto> listarNoDisponibles() throws SQLException {
+        List<Producto> lista = new ArrayList<>();
+        String sql = "SELECT p.id_producto, p.id_categoria, c.nombre AS categoria, " +
+                     "p.nombre, p.descripcion, p.imagen, p.disponible " +
+                     "FROM Producto p " +
+                     "JOIN Categoria c ON p.id_categoria = c.id_categoria " +
+                     "WHERE p.disponible = FALSE ORDER BY p.nombre";
+        try (Connection conn = Conexion.get();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Producto p = mapearProducto(rs);
+                p.setDisponible(false);
+                lista.add(p);
+            }
+        }
+        return lista;
+    }
+
+    /** Cuenta de productos activos/inactivos y variantes inactivas, para el resumen del dashboard. */
+    public int[] contarDisponibilidad() throws SQLException {
+        String sql = "SELECT " +
+                     "(SELECT COUNT(*) FROM Producto WHERE disponible = TRUE), " +
+                     "(SELECT COUNT(*) FROM Producto WHERE disponible = FALSE), " +
+                     "(SELECT COUNT(*) FROM Producto_Variante WHERE disponible = FALSE)";
+        try (Connection conn = Conexion.get();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) return new int[]{ rs.getInt(1), rs.getInt(2), rs.getInt(3) };
+        }
+        return new int[]{0, 0, 0};
+    }
+
     /** Lista categorías disponibles. */
     public List<String[]> listarCategorias() throws SQLException {
         List<String[]> lista = new ArrayList<>();

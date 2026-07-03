@@ -138,15 +138,58 @@ public class PedidoDAO {
         }
     }
 
-    /** Cambia el estado de un pedido. */
+    /** Cambia el estado de un pedido y deja constancia en el historial de cambios. */
     public void actualizarEstado(int idPedido, String nuevoEstado) throws SQLException {
-        String sql = "UPDATE Pedido SET estado = ? WHERE id_pedido = ?";
+        String sqlActual = "SELECT estado FROM Pedido WHERE id_pedido = ?";
+        String sqlUpdate = "UPDATE Pedido SET estado = ? WHERE id_pedido = ?";
+        String sqlHist   = "INSERT INTO Historial_Estado (id_pedido, estado_anterior, estado_nuevo) VALUES (?, ?, ?)";
+
+        try (Connection conn = Conexion.get()) {
+            String estadoAnterior = null;
+            try (PreparedStatement ps = conn.prepareStatement(sqlActual)) {
+                ps.setInt(1, idPedido);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) estadoAnterior = rs.getString(1);
+                }
+            }
+
+            try (PreparedStatement ps = conn.prepareStatement(sqlUpdate)) {
+                ps.setString(1, nuevoEstado);
+                ps.setInt(2, idPedido);
+                ps.executeUpdate();
+            }
+
+            try (PreparedStatement ps = conn.prepareStatement(sqlHist)) {
+                ps.setInt(1, idPedido);
+                ps.setString(2, estadoAnterior);
+                ps.setString(3, nuevoEstado);
+                ps.executeUpdate();
+            }
+        }
+    }
+
+    /**
+     * Historial de cambios de estado de un pedido, mas reciente primero.
+     * Retorna String[]: {estado_anterior, estado_nuevo, fecha_cambio}
+     */
+    public List<String[]> listarHistorial(int idPedido) throws SQLException {
+        List<String[]> lista = new ArrayList<>();
+        String sql = "SELECT estado_anterior, estado_nuevo, fecha_cambio " +
+                     "FROM Historial_Estado WHERE id_pedido = ? ORDER BY fecha_cambio DESC";
         try (Connection conn = Conexion.get();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, nuevoEstado);
-            ps.setInt(2, idPedido);
-            ps.executeUpdate();
+            ps.setInt(1, idPedido);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new String[]{
+                        rs.getString("estado_anterior"),
+                        rs.getString("estado_nuevo"),
+                        rs.getTimestamp("fecha_cambio").toString()
+                    });
+                }
+            }
         }
+        return lista;
     }
 
     /** Fija el precio total del admin y lo marca como confirmado. */

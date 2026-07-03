@@ -31,6 +31,10 @@
         ? pedidoDAO.listarTodos(filtroEstado != null && !filtroEstado.isEmpty() ? filtroEstado : null)
         : null;
 
+    List<String[]> historial = pedidoDetalle != null
+        ? pedidoDAO.listarHistorial(pedidoDetalle.getIdPedido())
+        : null;
+
     if (pedidos != null && busqueda != null && !busqueda.trim().isEmpty()) {
         String b = busqueda.trim().toLowerCase();
         pedidos.removeIf(p ->
@@ -38,6 +42,27 @@
             && (p.getNombreCliente() == null || !p.getNombreCliente().toLowerCase().contains(b))
         );
     }
+
+    // Paginacion (vista lista)
+    final int TAM_PAGINA = 10;
+    int totalPedidos = pedidos != null ? pedidos.size() : 0;
+    int totalPaginas = Math.max(1, (int) Math.ceil(totalPedidos / (double) TAM_PAGINA));
+    int paginaActual = 1;
+    if (request.getParameter("pagina") != null) {
+        try { paginaActual = Integer.parseInt(request.getParameter("pagina")); } catch (NumberFormatException ignored) {}
+    }
+    if (paginaActual < 1) paginaActual = 1;
+    if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+
+    List<Pedido> pedidosPagina = pedidos;
+    if (pedidos != null && !pedidos.isEmpty()) {
+        int desde = (paginaActual - 1) * TAM_PAGINA;
+        int hasta = Math.min(desde + TAM_PAGINA, totalPedidos);
+        pedidosPagina = pedidos.subList(desde, hasta);
+    }
+
+    String qsBase = "estado=" + java.net.URLEncoder.encode(filtroEstado != null ? filtroEstado : "", "UTF-8")
+        + (busqueda != null && !busqueda.isEmpty() ? "&buscar=" + java.net.URLEncoder.encode(busqueda, "UTF-8") : "");
 
     // Pestañas del wireframe -> valores reales del ENUM en BD
     String[][] pestanas = {
@@ -196,6 +221,23 @@
                         <% } %>
                     </div>
 
+                    <div class="admin-info-card" style="margin-top:20px;">
+                        <h2>Historial de cambios</h2>
+                        <% if (historial.isEmpty()) { %>
+                            <p style="font-size:13px;color:var(--texto-suave);">Sin cambios de estado registrados todavía.</p>
+                        <% } else {
+                            for (String[] h : historial) {
+                                String anterior = h[0] != null ? h[0] : "Creado";
+                                String nuevo    = h[1];
+                                String fecha    = h[2];
+                        %>
+                        <div class="admin-info-fila">
+                            <strong><%= fecha %></strong>
+                            <span><%= anterior %> → <%= nuevo %></span>
+                        </div>
+                        <% } } %>
+                    </div>
+
                     <a href="${pageContext.request.contextPath}/jsp/admin/pedidos.jsp"
                        class="btn btn-outline" style="display:block; text-align:center; margin-top:14px;">
                         ← Volver a la lista
@@ -246,10 +288,10 @@
                         <tr><th>N° Pedido</th><th>Cliente</th><th>Producto</th><th>Fecha Entrega</th><th>Estado</th><th>Total</th><th>Acción</th></tr>
                     </thead>
                     <tbody>
-                    <% if (pedidos.isEmpty()) { %>
+                    <% if (pedidosPagina.isEmpty()) { %>
                         <tr><td colspan="7" style="text-align:center;color:var(--texto-suave);padding:32px;">No hay pedidos que coincidan.</td></tr>
                     <% } else {
-                        for (Pedido p : pedidos) {
+                        for (Pedido p : pedidosPagina) {
                             String bc = badgeClase(p.getEstado());
                     %>
                         <tr>
@@ -265,7 +307,22 @@
                     </tbody>
                 </table>
                 <div class="admin-paginacion">
-                    <span>Mostrando <%= pedidos.size() %> de <%= pedidos.size() %> pedidos</span>
+                    <span>
+                        <% if (totalPedidos == 0) { %>
+                            Mostrando 0 pedidos
+                        <% } else { %>
+                            Mostrando <%= (paginaActual - 1) * TAM_PAGINA + 1 %>–<%= Math.min(paginaActual * TAM_PAGINA, totalPedidos) %> de <%= totalPedidos %> pedidos
+                        <% } %>
+                    </span>
+                    <% if (totalPaginas > 1) { %>
+                    <div style="display:flex; gap:6px; align-items:center;">
+                        <a class="btn-sm <%= paginaActual <= 1 ? "disabled" : "" %>"
+                           href="${pageContext.request.contextPath}/jsp/admin/pedidos.jsp?<%= qsBase %>&pagina=<%= Math.max(1, paginaActual - 1) %>">← Anterior</a>
+                        <span style="font-size:12px;color:var(--texto-suave);">Página <%= paginaActual %> de <%= totalPaginas %></span>
+                        <a class="btn-sm <%= paginaActual >= totalPaginas ? "disabled" : "" %>"
+                           href="${pageContext.request.contextPath}/jsp/admin/pedidos.jsp?<%= qsBase %>&pagina=<%= Math.min(totalPaginas, paginaActual + 1) %>">Siguiente →</a>
+                    </div>
+                    <% } %>
                 </div>
             </div>
 

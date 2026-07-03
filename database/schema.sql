@@ -122,5 +122,18 @@ CREATE TABLE Pago_Final (
 );
 
 -- ============================================================
+-- 5. HISTORIAL DE CAMBIOS DE ESTADO (auditoria de Pedido)
+-- ============================================================
+
+CREATE TABLE Historial_Estado (
+  id_historial INT AUTO_INCREMENT PRIMARY KEY,
+  id_pedido INT NOT NULL,
+  estado_anterior VARCHAR(30),
+  estado_nuevo VARCHAR(30) NOT NULL,
+  fecha_cambio DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido)
+);
+
+-- ============================================================
 -- FIN DEL ESQUEMA
 -- ============================================================
