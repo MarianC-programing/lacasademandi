@@ -19,14 +19,14 @@ INSERT INTO Categoria (nombre) VALUES
 --  directamente en la tabla Administrador cuando se monte el ambiente real)
 -- ============================================================
 
-INSERT INTO Producto (id_categoria, nombre, descripcion, disponible) VALUES
-  (1, 'Delicia Tres Leches Frutal', 'Bizcocho tres leches decorado con fresas frescas y melocotón, suave y húmedo.', TRUE),
-  (1, 'Cheesecake Tropical de Maracuyá', 'Cheesecake cremoso con cobertura de maracuyá natural y sabor tropical.', TRUE),
-  (1, 'Fresas & Crema', 'Pastel relleno de fresas frescas y crema suave, ideal para celebraciones.', TRUE),
-  (1, 'Chocoflan de Fresas', 'Combinación de flan y pastel de chocolate decorado con fresas frescas.', TRUE),
-  (1, 'Melocotón & Crema', 'Pastel relleno de melocotón y crema, con textura ligera y sabor delicado.', TRUE),
-  (1, 'Cheesecake Frutos del Bosque', 'Cheesecake cremoso cubierto con una selección de frutos rojos.', TRUE),
-  (1, 'Dulce Tentación de Leche', 'Pastel relleno de crema de dulce de leche, con sabor intenso y suave.', TRUE);
+INSERT INTO Producto (id_categoria, nombre, descripcion, imagen, disponible) VALUES
+  (1, 'Delicia Tres Leches Frutal', 'Bizcocho tres leches decorado con fresas frescas y melocotón, suave y húmedo.', 'delicia-tres-leches-frutal.jpg', TRUE),
+  (1, 'Cheesecake Tropical de Maracuyá', 'Cheesecake cremoso con cobertura de maracuyá natural y sabor tropical.', 'cheesecake-tropical-de-maracuya.jpg', TRUE),
+  (1, 'Fresas & Crema', 'Pastel relleno de fresas frescas y crema suave, ideal para celebraciones.', 'fresas-y-crema.jpg', TRUE),
+  (1, 'Chocoflan de Fresas', 'Combinación de flan y pastel de chocolate decorado con fresas frescas.', 'chocoflan-de-fresas.jpg', TRUE),
+  (1, 'Melocotón & Crema', 'Pastel relleno de melocotón y crema, con textura ligera y sabor delicado.', 'melocoton-y-crema.jpg', TRUE),
+  (1, 'Cheesecake Frutos del Bosque', 'Cheesecake cremoso cubierto con una selección de frutos rojos.', 'cheesecake-frutos-del-bosque.jpg', TRUE),
+  (1, 'Dulce Tentación de Leche', 'Pastel relleno de crema de dulce de leche, con sabor intenso y suave.', 'dulce-tentacion-de-leche.jpg', TRUE);
 
 -- Variantes de tamaño para cada dulce (precios tomados del catálogo real)
 
@@ -77,10 +77,10 @@ INSERT INTO Producto_Variante (id_producto, tamano, precio_base, disponible) VAL
 -- Cada postre tiene una sola variante ("Porción individual"), sin selector de tamaño
 -- ============================================================
 
-INSERT INTO Producto (id_categoria, nombre, descripcion, disponible) VALUES
-  (2, 'Cheesecake Tropical de Maracuyá (porción)', 'Porción individual de cheesecake con cobertura de maracuyá.', TRUE),
-  (2, 'Cheesecake Caramelo de Maracuyá', 'Porción individual de cheesecake con salsa de maracuyá y caramelo.', TRUE),
-  (2, 'Cheesecake Frutos del Bosque (porción)', 'Porción individual de cheesecake cubierto con frutos rojos.', TRUE);
+INSERT INTO Producto (id_categoria, nombre, descripcion, imagen, disponible) VALUES
+  (2, 'Cheesecake Tropical de Maracuyá (porción)', 'Porción individual de cheesecake con cobertura de maracuyá.', 'cheesecake-tropical-de-maracuya-porcion.jpg', TRUE),
+  (2, 'Cheesecake Caramelo de Maracuyá', 'Porción individual de cheesecake con salsa de maracuyá y caramelo.', 'cheesecake-caramelo-de-maracuya.jpg', TRUE),
+  (2, 'Cheesecake Frutos del Bosque (porción)', 'Porción individual de cheesecake cubierto con frutos rojos.', 'cheesecake-frutos-del-bosque-porcion.jpg', TRUE);
 
 -- Variantes (única por producto, representa la porción individual)
 -- Cheesecake Tropical de Maracuyá porción (id_producto = 8)

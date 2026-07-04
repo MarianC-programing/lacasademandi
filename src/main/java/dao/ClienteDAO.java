@@ -11,7 +11,7 @@ public class ClienteDAO {
 
     /** Lista todos los clientes registrados con su conteo de pedidos. */
     public List<Cliente> listarTodos() throws SQLException {
-        List<Cliente> lista = new java.util.ArrayList<>();
+        List<Cliente> lista = new ArrayList<>();
         String sql = "SELECT id_cliente, nombre, telefono, whatsapp, correo, fecha_registro " +
                      "FROM Cliente ORDER BY fecha_registro DESC";
         try (Connection conn = Conexion.get();
