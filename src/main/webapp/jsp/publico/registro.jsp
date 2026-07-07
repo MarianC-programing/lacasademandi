@@ -20,11 +20,22 @@
         }
 
         .registro-lateral {
-            background: var(--primario);
+            background: var(--primario) url('${pageContext.request.contextPath}/img/crearcuenta.png') center/cover no-repeat;
             padding: 48px 40px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            position: relative;
+        }
+        .registro-lateral::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+        }
+        .registro-lateral h2, .registro-lateral p {
+            position: relative;
+            z-index: 1;
         }
         .registro-lateral h2 {
             font-family: var(--titulo);

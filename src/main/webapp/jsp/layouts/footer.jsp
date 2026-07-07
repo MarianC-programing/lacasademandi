@@ -7,9 +7,9 @@
         </div>
         <div class="footer__col">
             <h4>Siguenos</h4>
-            <a href="#">Instagram</a>
+            <a href="https://www.instagram.com/lacasade_mandi/" target="_blank" rel="noopener">Instagram</a>
             <a href="#">Facebook</a>
-            <a href="#">WhatsApp</a>
+            <a href="https://wa.me/50765667200" target="_blank" rel="noopener">WhatsApp</a>
         </div>
         <div class="footer__col">
             <h4>Legal</h4>

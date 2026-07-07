@@ -107,13 +107,13 @@
         <div class="admin-content">
 
             <% if ("1".equals(request.getParameter("ok"))) { %>
-                <div class="admin-alerta-exito">✅ Pedido actualizado correctamente.</div>
+                <div class="admin-alerta-exito"> Pedido actualizado correctamente.</div>
             <% } else if ("1".equals(request.getParameter("error"))) { %>
                 <div class="admin-alerta-error">No se pudo actualizar el pedido. Intenta de nuevo.</div>
             <% } %>
 
             <% if (pedidoDetalle != null) { %>
-            <%-- ===================== VISTA DETALLE ===================== --%>
+            <%-- VISTA DETALLE --%>
             <div class="admin-content-header">
                 <div>
                     <h1>Pedido #<%= pedidoDetalle.getIdPedido() %></h1>
@@ -246,7 +246,7 @@
             </div>
 
             <% } else { %>
-            <%-- ===================== VISTA LISTA ===================== --%>
+            <%-- VISTA LIST --%>
             <div class="admin-content-header">
                 <div>
                     <h1>Gestión de Pedidos</h1>
@@ -336,7 +336,6 @@
 </div>
 
 <%!
-    /** Traduce el estado de BD a la clase CSS de badge correspondiente (definida en estilos.css). */
     public String badgeClase(String estado) {
         if (estado == null) return "badge-pendiente";
         switch (estado) {

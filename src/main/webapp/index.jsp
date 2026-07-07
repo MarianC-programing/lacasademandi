@@ -248,27 +248,32 @@
         <p class="seccion__sub">Nuestras últimas historias y secretos culinarios.</p>
         <div class="noticias-grid">
             <div class="noticia">
-                <div class="noticia__img"></div>
+                <div class="noticia__img">
+                    <iframe width="100%" height="100%" style="border:0; display:block;"
+                        src="https://www.youtube.com/embed/sjqVBtr4cHI"
+                        title="Video La Casa de Mandi" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
                 <div class="noticia__cuerpo">
-                    <h3 class="noticia__titulo">El Secreto de la Masa Madre</h3>
-                    <p class="noticia__texto">Descubre las técnicas ancestrales que dan vida a nuestros productos más especiales.</p>
-                    <a href="#">Leer más →</a>
+                    <h3 class="noticia__titulo">Descúbrenos en video</h3>
+                    <p class="noticia__texto">Un vistazo a nuestro trabajo artesanal, directo desde la cocina de La Casa de Mandi.</p>
                 </div>
             </div>
             <div class="noticia">
-                <div class="noticia__img"></div>
+                <div class="noticia__img"><img src="${pageContext.request.contextPath}/img/tendencias2026.png" alt="5 tendencias que redefinirán la alta cocina en 2026"></div>
                 <div class="noticia__cuerpo">
-                    <h3 class="noticia__titulo">El Arte de la Decoración</h3>
-                    <p class="noticia__texto">Un vistazo a la precisión y creatividad detrás de nuestras tartas personalizadas.</p>
-                    <a href="#">Leer más →</a>
+                    <h3 class="noticia__titulo">5 tendencias que redefinirán la alta cocina en 2026</h3>
+                    <p class="noticia__texto">Los menús se diseñan hoy mapeando ecosistemas específicos: chefs, biólogos y antropólogos trabajan juntos para rescatar ingredientes olvidados.</p>
+                    <a href="https://www.finediningtable.com/es/mas-alla-del-plato-5-tendencias-que-redefiniran-la-alta-cocina-en-2026/" target="_blank" rel="noopener">Leer más →</a>
                 </div>
             </div>
             <div class="noticia">
-                <div class="noticia__img"></div>
+                <div class="noticia__img"><img src="${pageContext.request.contextPath}/img/ComerDulces.png" alt="¿Puede el sabor influir en cómo te sientes?"></div>
                 <div class="noticia__cuerpo">
-                    <h3 class="noticia__titulo">Un día en nuestra cocina</h3>
-                    <p class="noticia__texto">Acompáñanos en el proceso diario de creación de nuestros dulces artesanales.</p>
-                    <a href="#">Ver más →</a>
+                    <h3 class="noticia__titulo">¿Puede el sabor influir en cómo te sientes?</h3>
+                    <p class="noticia__texto">Los menús basados en el estado de ánimo buscan platos que calmen, energicen o levanten el ánimo a través del sabor.</p>
+                    <a href="https://aromatechgroup.com/es/actus-business-units/alimentacion-basada-en-el-buen-humor-puede-el-sabor-influir-en-como-te-sientes/" target="_blank" rel="noopener">Leer más →</a>
                 </div>
             </div>
         </div>

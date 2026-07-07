@@ -46,15 +46,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>CapacidadServlet</servlet-name>
-        <servlet-class>controlador.CapacidadServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CapacidadServlet</servlet-name>
-        <url-pattern>/capacidad</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>ProductoServlet</servlet-name>
         <servlet-class>controlador.ProductoServlet</servlet-class>
     </servlet>

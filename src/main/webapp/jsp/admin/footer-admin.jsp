@@ -1,5 +1,3 @@
-<%-- Footer compacto para el panel admin (respeta marca y enlaces del footer público,
-     pero ajustado al ancho del área de contenido con sidebar) --%>
 <footer class="admin-footer">
     <div class="admin-footer__grid">
         <div class="admin-footer__brand">

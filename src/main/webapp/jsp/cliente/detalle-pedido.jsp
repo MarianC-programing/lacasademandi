@@ -169,7 +169,7 @@
                     <strong>Precio total</strong>
                     <span>
                         <strong>$<%= String.format("%.2f", pedido.getPrecioTotal()) %></strong>
-                        <%= pedido.isPrecioConfirmado() ? "<span style='color:#16a34a;font-size:12px;'> ✓ confirmado</span>" : "<span style='color:#d97706;font-size:12px;'> ⏳ pendiente de confirmación</span>" %>
+                        <%= pedido.isPrecioConfirmado() ? "<span style='color:#16a34a;font-size:12px;'> ✓ confirmado</span>" : "<span style='color:#d97706;font-size:12px;'> pendiente de confirmación</span>" %>
                     </span>
                 </div>
                 <div class="info-fila">
@@ -231,7 +231,7 @@
                             · Ref: <%= abono.getReferencia() %>
                         <% } %>
                     </div>
-                    <div class="badge-pago-pending">⏳ Esperando verificación del administrador</div>
+                    <div class="badge-pago-pending"> Esperando verificación del administrador</div>
 
                 <% } else if (puedeAbono) { %>
                     <div class="monto-grande">$<%= String.format("%.2f", cincuenta) %></div>
@@ -263,7 +263,7 @@
                     </form>
 
                 <% } else if (!pedido.isPrecioConfirmado()) { %>
-                    <div class="badge-pago-locked">⏳ El administrador aún no ha confirmado el precio del pedido.</div>
+                    <div class="badge-pago-locked"> El administrador aún no ha confirmado el precio del pedido.</div>
                 <% } %>
             </div>
 
@@ -283,7 +283,7 @@
                             · Ref: <%= pagoFinal.getReferencia() %>
                         <% } %>
                     </div>
-                    <div class="badge-pago-pending">⏳ Esperando verificación del administrador</div>
+                    <div class="badge-pago-pending"> Esperando verificación del administrador</div>
 
                 <% } else if (puedePagoFinal) { %>
                     <%

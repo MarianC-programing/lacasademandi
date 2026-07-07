@@ -24,11 +24,22 @@
         }
 
         .login-lateral {
-            background: var(--primario);
+            background: var(--primario) url('${pageContext.request.contextPath}/img/login.png') center/cover no-repeat;
             padding: 48px 40px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            position: relative;
+        }
+        .login-lateral::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+        }
+        .login-lateral h2, .login-lateral p {
+            position: relative;
+            z-index: 1;
         }
         .login-lateral h2 {
             font-family: var(--titulo);

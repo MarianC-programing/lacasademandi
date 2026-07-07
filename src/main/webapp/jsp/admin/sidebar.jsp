@@ -1,4 +1,4 @@
-<%-- Sidebar del panel admin.
+<%-- Sidebar del panel admin
      Antes del include: request.setAttribute("seccionActiva", "dashboard|pedidos|inventario|clientes|configuracion");
 --%>
 <%
@@ -28,16 +28,11 @@
                class="<%= "clientes".equals(seccionActiva) ? "activo" : "" %>">
             <img class="icono" src="${pageContext.request.contextPath}/img/Icon/cliente.png" alt=""> Clientes
         </a></li>
-        <li><a href="${pageContext.request.contextPath}/jsp/admin/capacidad.jsp"
-               class="<%= "configuracion".equals(seccionActiva) ? "activo" : "" %>">
-            <img class="icono" src="${pageContext.request.contextPath}/img/Icon/ajustes.png" alt=""> Configuracion
-        </a></li>
     </ul>
 
     <div class="admin-sidebar__footer">
         <div class="nombre"><%= nombreAdmin %></div>
         <a href="${pageContext.request.contextPath}/logout">
-            <img class="icono-logout" src="${pageContext.request.contextPath}/img/Icon/logout.png" alt=""> Cerrar sesion
         </a>
     </div>
 </aside>
